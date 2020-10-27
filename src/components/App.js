@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Flex } from "@chakra-ui/core";
 
 import List from './List.js'
+import AddItem from './AddItem.js'
 
 class App extends Component {
   state = {};
@@ -10,7 +11,7 @@ class App extends Component {
     return (
       <Router>
         <Flex className='App'>
-          <List />
+          <AddItem />
         </Flex>
       </Router>)
   }
