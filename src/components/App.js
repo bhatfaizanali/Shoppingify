@@ -15,7 +15,7 @@ class App extends Component {
         <div style={{ display: "flex" }} className="App">
           <Nav />
           <Items />
-       <AddItem />
+          <AddItem />
         </div>
       </Router>
     );

@@ -6,9 +6,7 @@ class Category extends Component {
     state = {}
     render() {
         return (
-            <>
-                <Text fontFamily="'Quicksand', sans-serif" fontSize="18px">Category</Text>
-            </>
+            <Text fontFamily="'Quicksand', sans-serif" fontSize="18px" mb='20px'>Category</Text>
         );
     }
 }
