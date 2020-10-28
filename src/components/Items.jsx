@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid } from "@chakra-ui/core";
+import { connect } from "react-redux";
 
 import Search from "./Search";
 import Category from "./Category"
@@ -7,6 +8,7 @@ import Item from "./Item"
 
 class Items extends Component {
     state = {}
+
     render() {
         return (
             <div style={{ background: " #FAFAFE", padding: "2rem 3rem" }}>
@@ -64,5 +66,7 @@ class Items extends Component {
         );
     }
 }
-
-export default Items;
+const mapStateToProps = (state) => {
+    return { boards: state.boards };
+};
+export default connect(mapStateToProps)(Items);

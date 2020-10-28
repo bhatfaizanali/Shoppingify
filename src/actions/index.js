@@ -1,9 +1,14 @@
 import * as actions from "./actionTypes";
 
+export const addItem = (item) => {
+  return {
+    type: actions.ADD_ITEM,
+    payload: item,
+  };
+};
+
 export const fetchItems = () => {
-  return function (dispatch) {
-    dispatch({
-      type: actions.FETCH_ITEMS,
-    });
+  return {
+    type: actions.FETCH_ITEMS,
   };
 };
