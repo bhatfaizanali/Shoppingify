@@ -3,16 +3,15 @@ import { Flex } from "@chakra-ui/core";
 
 import List from './List.js'
 import AddItem from './AddItem.js'
+import ItemDescription from './ItemDescription.js'
 
 class App extends Component {
-    state = {
-        display: 'addItem'
-    };
     render() {
         return (
             <>
-                <AddItem isOpen={this.state.display === 'addItem' ? true : false} />
-                <List isOpen={this.state.display === 'list' ? true : false} />
+                <AddItem isOpen={this.props.rightComponent === 'addItem' ? true : false} />
+                <List isOpen={this.props.rightComponent === 'list' ? true : false} />
+                <ItemDescription isOpen={this.props.rightComponent === 'description' ? true : false} />
             </>
         )
     }
