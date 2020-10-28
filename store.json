@@ -1,0 +1,69 @@
+{
+    "categories": {
+        "id1": {
+            "name": "",
+            "items": [
+                "itemId1",
+                "itemId2"
+            ]
+        },
+        "id2": {
+            "name": "",
+            "items": [
+                "itemId1",
+                "itemId2"
+            ]
+        }
+    },
+    "items": {
+        "id1": {
+            "id": "",
+            "name": "",
+            "category": "",
+            "note": "",
+            "imageURL": ""
+        },
+        "id2": {
+            "id": "",
+            "name": "",
+            "category": "",
+            "note": "",
+            "imageURL": ""
+        }
+    },
+    "lists": {
+        "listId1": {
+            "id": "",
+            "name": "",
+            "status": "",
+            "date": "",
+            "items": {
+                "itemId1": {
+                    "quantity": "",
+                    "bought": ""
+                },
+                "itemId2": {
+                    "quantity": "",
+                    "bought": ""
+                }
+            }
+        },
+        "listId2": {
+            "id": "",
+            "name": "",
+            "status": "",
+            "date": "",
+            "items": {
+                "itemId1": {
+                    "quantity": "",
+                    "bought": ""
+                },
+                "itemId2": {
+                    "quantity": "",
+                    "bought": ""
+                }
+            }
+        }
+    },
+    "activeList": "listId"
+}
