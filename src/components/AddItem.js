@@ -40,7 +40,7 @@ class AddItem extends Component {
     render() {
         console.log(this.props.items)
         return (
-            <Box bg='#fafafe' w='25vw' h='100vh' p='30px' position='relative'>
+            <Box bg='#fafafe' w='25vw' h='100vh' p='30px' position='relative' display={this.props.isOpen ? 'block' : 'none'}>
                 <Text fontSize='xl' mb='40px'>Add a new item</Text>
 
                 <Text fontSize='md' mb='7px'>Name</Text>
