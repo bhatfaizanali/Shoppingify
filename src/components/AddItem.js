@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   Box,
   Button,
-  Flex,
   Input,
   InputGroup,
   InputRightElement,
@@ -136,12 +135,6 @@ class AddItem extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    items: state.items,
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     add: (item) => {
@@ -149,4 +142,4 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(AddItem);
+export default connect(null, mapDispatchToProps)(AddItem);

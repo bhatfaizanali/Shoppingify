@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/core";
 import { connect } from 'react-redux';
 
-import { addItem as add } from "../actions";
+import { removeItem as remove } from "../actions";
 
 class ItemDescription extends Component {
     constructor() {
@@ -16,6 +16,7 @@ class ItemDescription extends Component {
         }
     }
     render() {
+        console.log(this.props.items)
         return (
             <Box w='25vw' h='100vh' p='30px' position='relative' display={this.props.isOpen ? 'block' : 'none'}>
                 <Button bg='transparent' border='none' color='#f9a109' mt='-20px' ml='-20px' fontWeight='400'>&lt; back</Button>
@@ -42,7 +43,7 @@ class ItemDescription extends Component {
                     bottom="30px"
                     left="25%"
                     size='sm'
-                    onClick={this.clearInputs}
+                    onClick={() => this.props.remove(this.item.id)}
                 >
                     delete
                 </Button>
@@ -55,7 +56,6 @@ class ItemDescription extends Component {
                     bottom="30px"
                     right="25%"
                     size='sm'
-                    onClick={this.props.add(this.item)}
                 >
                     Add to list
                 </Button>
@@ -66,10 +66,10 @@ class ItemDescription extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        add: (item) => {
-            dispatch(add(item));
-        },
+        remove: id => {
+            dispatch(remove(id));
+        }
     };
 }
 
-export default connect(mapDispatchToProps)(ItemDescription);
+export default connect(null, mapDispatchToProps)(ItemDescription);

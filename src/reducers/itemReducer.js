@@ -11,8 +11,12 @@ export default function (state = items, action) {
         ...newItem
       }
     }
+    case actions.REMOVE_ITEM: {
+      delete state[action.payload]
+      return state;
+    }
     case actions.FETCH_ITEMS:
-      return { items: state };
+      return state;
     default:
       return state;
   }
