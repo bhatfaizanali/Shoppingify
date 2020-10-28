@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Box, Button, Flex, Input, InputGroup, InputRightElement, Text } from "@chakra-ui/core";
 import { connect } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
+import { v4 as uuid } from 'uuid';
+
+import { add } from '../actions/itemActions.js'
 
 class AddItem extends Component {
     constructor() {
@@ -14,7 +17,28 @@ class AddItem extends Component {
             showCategories: false
         }
     }
+    clearInputs = () => {
+        this.setState({
+            name: '',
+            note: '',
+            imageUrl: '',
+            category: '',
+            showCategories: false
+        })
+    }
+    createItem = () => {
+        const item = {
+            id: uuid(),
+            name: this.state.name,
+            note: this.state.note,
+            imageUrl: this.state.imageUrl,
+            category: this.state.category,
+        }
+        this.clearInputs();
+        this.props.add(item)
+    }
     render() {
+        console.log(this.props.items)
         return (
             <Box bg='#fafafe' w='25vw' h='100vh' p='30px' position='relative'>
                 <Text fontSize='xl' mb='40px'>Add a new item</Text>
@@ -38,8 +62,8 @@ class AddItem extends Component {
                     </InputRightElement>
                 </InputGroup>
 
-                <Button border='none' bg='transparent' position='absolute' rounded='8px' bottom='30px' left='30%'>cancel</Button>
-                <Button bg='#f9a109' color='white' border='none' rounded='8px' position='absolute' bottom='30px' right='30%'>Save</Button>
+                <Button border='none' bg='transparent' position='absolute' rounded='8px' bottom='30px' left='30%' onClick={this.clearInputs}>cancel</Button>
+                <Button bg='#f9a109' color='white' border='none' rounded='8px' position='absolute' bottom='30px' right='30%' onClick={this.createItem}>Save</Button>
             </Box>
         )
     }
@@ -47,21 +71,15 @@ class AddItem extends Component {
 
 const mapStateToProps = state => {
     return {
-        list: state.list
+        items: state.items
     }
 }
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         add: board => {
-//             dispatch(add(board))
-//         },
-//         remove: id => {
-//             dispatch(remove(id))
-//         },
-//         get: () => {
-//             dispatch(get())
-//         }
-//     }
-// }
-export default connect(mapStateToProps)(AddItem);
+const mapDispatchToProps = dispatch => {
+    return {
+        add: item => {
+            dispatch(add(item))
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(AddItem);
