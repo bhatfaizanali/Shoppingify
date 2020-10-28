@@ -1,13 +1,20 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+import Items from "./Items";
+import Nav from "./Nav";
 
 class App extends Component {
   state = {};
   render() {
     return (
       <Router>
-        <div className="App">Hello User!</div>
-      </Router>)
+        <div style={{ display: "flex" }} className="App">
+          <Nav />
+          <Items />
+        </div>
+      </Router>
+    );
   }
 }
 
