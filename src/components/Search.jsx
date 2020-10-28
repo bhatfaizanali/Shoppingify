@@ -5,10 +5,10 @@ class Search extends Component {
     state = {}
     render() {
         return (
-            <InputGroup>
+            <InputGroup style={{ margin: "0 5rem" }}>
                 <InputLeftElement children={<Icon name="search" color="black.300" />} />
                 <Input
-                    style={{ boxShadow: "0.01rem 0.01rem 0.1rem 0.1rem #5555", border: "0.1rem white", borderRadius: "0.5rem", color: "grey" }}
+                    style={{ boxShadow: "0px 2px 12px rgba(0, 0, 0, 0.05)", border: "0.1rem white", borderRadius: "0.5rem", color: "grey" }}
                     placeholder="Search Items..." />
             </InputGroup>
 
