@@ -27,7 +27,36 @@ class Items extends Component {
                         <Item />
                         <Item />
                         <Item />
-
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
+                        <Item />
                     </Grid>
                 </div>
 
