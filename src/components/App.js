@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Items from "./Items";
 import Nav from "./Nav";
 import RightComponent from './RightComponent.js'
+
 
 
 class App extends Component {
@@ -20,7 +21,6 @@ class App extends Component {
         </div>
       </Router>
     );
-
   }
 }
 

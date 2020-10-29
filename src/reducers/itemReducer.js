@@ -1,6 +1,8 @@
 import * as actions from "../actions/actionTypes";
 import items from "../components/dummyItems.js"
 
+
+
 export default function (state = items, action) {
   switch (action.type) {
     case actions.ADD_ITEM: {
@@ -8,8 +10,12 @@ export default function (state = items, action) {
       newItem[action.payload.id] = action.payload;
       return {
         ...state,
-        ...newItem
-      }
+        ...newItem,
+      };
+    }
+    case actions.REMOVE_ITEM: {
+      delete state[action.payload];
+      return state;
     }
     case actions.REMOVE_ITEM: {
       delete state[action.payload]
