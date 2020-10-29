@@ -17,22 +17,22 @@ class AddItem extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      note: "",
-      imageUrl: "",
-      category: "",
-      showCategories: false,
-    };
+      name: '',
+      note: '',
+      imageUrl: '',
+      category: '',
+      showCategories: false
+    }
   }
   clearInputs = () => {
     this.setState({
-      name: "",
-      note: "",
-      imageUrl: "",
-      category: "",
-      showCategories: false,
-    });
-  };
+      name: '',
+      note: '',
+      imageUrl: '',
+      category: '',
+      showCategories: false
+    })
+  }
   createItem = () => {
     const item = {
       id: uuid(),
@@ -40,18 +40,14 @@ class AddItem extends Component {
       note: this.state.note,
       imageUrl: this.state.imageUrl,
       category: this.state.category,
-    };
+    }
     this.clearInputs();
-    this.props.add(item);
-  };
+    this.props.add(item)
+  }
   render() {
-    console.log(this.props.items);
     return (
-      <Box bg="#fafafe" w="25vw" h="100vh" p="30px" position="relative">
-        <Text fontSize="xl" mb="40px">
-          Add a new item
-        </Text>
-
+      <Box bg='#fafafe' w='25vw' h='100vh' p='30px' position='relative' display={this.props.isOpen ? 'block' : 'none'}>
+        <Text fontSize='xl' mb='40px'>Add a new item</Text>
         <Text fontSize="md" mb="7px">
           Name
         </Text>
@@ -139,12 +135,6 @@ class AddItem extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    items: state.items,
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return {
     add: (item) => {
@@ -152,4 +142,4 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(AddItem);
+export default connect(null, mapDispatchToProps)(AddItem);

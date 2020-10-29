@@ -1,5 +1,7 @@
 import * as actions from "../actions/actionTypes";
-import items from "../components/dummyItems.js";
+import items from "../components/dummyItems.js"
+
+
 
 export default function (state = items, action) {
   switch (action.type) {
@@ -13,6 +15,10 @@ export default function (state = items, action) {
     }
     case actions.REMOVE_ITEM: {
       delete state[action.payload];
+      return state;
+    }
+    case actions.REMOVE_ITEM: {
+      delete state[action.payload]
       return state;
     }
     case actions.FETCH_ITEMS:

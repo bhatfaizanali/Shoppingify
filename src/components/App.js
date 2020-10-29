@@ -3,18 +3,21 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Items from "./Items";
 import Nav from "./Nav";
-import List from "./List.js";
-import AddItem from "./AddItem.js";
+import RightComponent from './RightComponent.js'
+
+
 
 class App extends Component {
-  state = {};
+  state = {
+    rightComponent: 'description'
+  };
   render() {
     return (
       <Router>
         <div style={{ display: "flex" }} className="App">
           <Nav />
           <Items />
-          <List />
+          <RightComponent rightComponent={this.state.rightComponent} />
         </div>
       </Router>
     );
