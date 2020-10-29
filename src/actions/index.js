@@ -19,3 +19,10 @@ export const removeItem = (id) => {
     payload: id
   };
 };
+
+export const addItemToCurrentList = (id) => {
+  return {
+    type: actions.ADD_ITEM_TO_CURRENT_LIST,
+    payload: id
+  };
+};

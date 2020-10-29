@@ -8,7 +8,7 @@ import RightComponent from './RightComponent.js'
 
 class App extends Component {
   state = {
-    rightComponent: 'description'
+    rightComponent: 'list'
   };
   render() {
     return (
