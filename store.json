@@ -1,20 +1,20 @@
 {
-    "categories": {
-        "id1": {
+    "categories": [
+        {
             "name": "",
             "items": [
                 "itemId1",
                 "itemId2"
             ]
         },
-        "id2": {
+        {
             "name": "",
             "items": [
                 "itemId1",
                 "itemId2"
             ]
         }
-    },
+    ],
     "items": {
         "id1": {
             "id": "",
