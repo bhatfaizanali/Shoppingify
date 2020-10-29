@@ -12,3 +12,10 @@ export const fetchItems = () => {
     type: actions.FETCH_ITEMS,
   };
 };
+
+export const removeItem = (id) => {
+  return {
+    type: actions.REMOVE_ITEM,
+    payload: id,
+  };
+};

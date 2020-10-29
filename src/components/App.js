@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Items from "./Items";
 import Nav from "./Nav";
-import List from './List.js'
-import AddItem from './AddItem.js'
-
+import List from "./List.js";
+import AddItem from "./AddItem.js";
 
 class App extends Component {
   state = {};
@@ -15,11 +14,10 @@ class App extends Component {
         <div style={{ display: "flex" }} className="App">
           <Nav />
           <Items />
-          <AddItem />
+          <List />
         </div>
       </Router>
     );
-
   }
 }
 

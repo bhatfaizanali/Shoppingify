@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   Box,
   Button,
-  Flex,
   Input,
   InputGroup,
   InputRightElement,
@@ -118,7 +117,7 @@ class AddItem extends Component {
           position="absolute"
           rounded="8px"
           bottom="30px"
-          left="30%"
+          left="25%"
           onClick={this.clearInputs}
         >
           cancel
