@@ -8,7 +8,6 @@ import AddItem from "./AddItem.js";
 import ItemDescription from "./ItemDescription.js";
 
 class App extends Component {
-  state = {};
   render() {
     return (
       <Router>
