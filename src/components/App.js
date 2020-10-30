@@ -14,9 +14,12 @@ class App extends Component {
         <div style={{ display: "flex" }} className="App">
           <Nav />
           <Items />
-          <Route path="/" exact component={List} />
-          <Route path="/itemDescription/:id" component={ItemDescription} />
-          <Route path="/addItem" component={AddItem} />
+          <Switch>
+            <Route path="/" exact component={List} />
+            <Route path="/itemDescription/:id" component={ItemDescription} />
+            <Route path="/addItem" component={AddItem} />
+          </Switch>
+
         </div>
       </Router>
     );

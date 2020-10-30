@@ -15,7 +15,7 @@ class Category extends Component {
                 return <Item key={id} id={id} name={this.props.items.items[id].name} />
             })
             return (
-                <div style={{ paddingTop: "3rem" }}>
+                <div style={{ paddingTop: "3rem" }} key={category[0]}>
                     <Text fontFamily="'Quicksand', sans-serif" fontSize="18px" mb='20px'>{category[0]}</Text>
                     <Grid templateColumns="repeat(5, 1fr)" gap={5}>
                         {items}
