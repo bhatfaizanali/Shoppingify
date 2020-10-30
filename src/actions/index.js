@@ -21,9 +21,14 @@ export const removeItem = (id) => {
 };
 
 export const addItemToCurrentList = (id) => {
-  console.log('add finc called')
   return {
     type: actions.ADD_ITEM_TO_CURRENT_LIST,
     payload: id,
+  };
+};
+export const removeItemFromCategories = (id, name) => {
+  return {
+    type: actions.DELETE_ITEM_FROM_CATEGORIES,
+    payload: { id, name },
   };
 };

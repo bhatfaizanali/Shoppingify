@@ -3,13 +3,12 @@ import { Text, Grid } from "@chakra-ui/core";
 import { connect } from "react-redux";
 
 import Item from "./Item"
-import categories from "./dummyCategories.js";
 
 
 class Category extends Component {
     state = {}
-
     render() {
+        const categories = this.props.items.categories
         const category = Object.entries(categories).map(category => {
             const items = category[1].map(id => {
                 return <Item key={id} id={id} name={this.props.items.items[id].name} />
