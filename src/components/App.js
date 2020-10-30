@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Items from "./Items";
 import Nav from "./Nav";
@@ -14,9 +14,11 @@ class App extends Component {
         <div style={{ display: "flex" }} className="App">
           <Nav />
           <Items />
-          <Route path="/" exact component={List} />
-          <Route path="/itemDescription/:id" component={ItemDescription} />
-          <Route path="/addItem" component={AddItem} />
+          <Switch>
+            <Route path="/" exact component={List} />
+            <Route path="/itemDescription/:id" component={ItemDescription} />
+            <Route path="/addItem" component={AddItem} />
+          </Switch>
         </div>
       </Router>
     );

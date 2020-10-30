@@ -26,3 +26,9 @@ export const addItemToCurrentList = (id) => {
     payload: id,
   };
 };
+export const removeItemFromCategories = (id, name) => {
+  return {
+    type: actions.DELETE_ITEM_FROM_CATEGORIES,
+    payload: { id, name },
+  };
+};
