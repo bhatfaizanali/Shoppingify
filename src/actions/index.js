@@ -17,6 +17,7 @@ export const removeItem = (id) => {
   return {
     type: actions.REMOVE_ITEM,
     payload: id
+
   };
 };
 

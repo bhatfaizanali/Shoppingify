@@ -1,5 +1,5 @@
 import * as actions from "../actions/actionTypes";
-import items from "../components/dummyItems.js"
+import items from "../components/dummyItems.js";
 
 export default function itemsReducer(state = items, action) {
   switch (action.type) {
@@ -8,11 +8,11 @@ export default function itemsReducer(state = items, action) {
       newItem[action.payload.id] = action.payload;
       return {
         ...state,
-        ...newItem
-      }
+        ...newItem,
+      };
     }
     case actions.REMOVE_ITEM: {
-      delete state[action.payload]
+      delete state[action.payload];
       return state;
     }
     case actions.FETCH_ITEMS:

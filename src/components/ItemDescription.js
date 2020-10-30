@@ -18,7 +18,7 @@ class ItemDescription extends Component {
     render() {
         console.log(this.props.items)
         return (
-            <Box w='25vw' h='100vh' p='30px' position='relative' display={this.props.isOpen ? 'block' : 'none'}>
+            <Box w='25vw' h='100vh' p='30px' position='relative'>
                 <Button bg='transparent' border='none' color='#f9a109' mt='-20px' ml='-20px' fontWeight='400'>&lt; back</Button>
                 <Flex justifyContent='center' mt='20px'>
                     <Image

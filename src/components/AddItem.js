@@ -46,7 +46,7 @@ class AddItem extends Component {
   }
   render() {
     return (
-      <Box bg='#fafafe' w='25vw' h='100vh' p='30px' position='relative' display={this.props.isOpen ? 'block' : 'none'}>
+      <Box bg='#fafafe' w='25vw' h='100vh' p='30px' position='relative'>
         <Text fontSize='xl' mb='40px'>Add a new item</Text>
         <Text fontSize="md" mb="7px">
           Name
@@ -113,7 +113,7 @@ class AddItem extends Component {
           position="absolute"
           rounded="8px"
           bottom="30px"
-          left="30%"
+          left="25%"
           onClick={this.clearInputs}
         >
           cancel
