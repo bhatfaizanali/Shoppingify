@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import { Box } from "@chakra-ui/core";
 import { BiPlus } from "react-icons/all";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
+
+import { addItemToCurrentList } from "../actions";
 
 class Item extends Component {
     state = {}
-    addToList = () => { }
     render() {
         return (<Box style={{ background: "white", display: "flex", justifyContent: "space-between", padding: "1rem", boxShadow: "0px 2px 12px rgba(0, 0, 0, 0.05)", border: "0.1rem", borderRadius: "1rem" }}>
-            <span style={{ fontFamily: "'Quicksand', sans-serif", fontStyle: "normal", fontSize: "16px" }}> {this.props.name}</span>
-            <span> <BiPlus onClick={this.addToList} color="#C1C1C4" /></span>
+            <Link style={{ textDecoration: "none" }} to={`/itemDescription/:${this.props.id}`}>
+                <span style={{ color: "black", cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontStyle: "normal", fontSize: "16px" }}> {this.props.name}</span>
+            </Link>
+            <span><BiPlus style={{ cursor: "pointer" }} onClick={this.props.addItemToCurrentList(this.props.id)} color="#C1C1C4" /></span>
         </Box>);
     }
 }
-
-export default Item;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addItemToCurrentList: (id) => {
+            dispatch(addItemToCurrentList(id));
+        },
+    };
+};
+export default connect(null, mapDispatchToProps)(Item);
