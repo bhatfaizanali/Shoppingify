@@ -13,10 +13,6 @@ class Search extends Component {
         });
     };
 
-    updatePlaceholder = (itemName) => {
-        this.setState({ placeholder: itemName });
-    }
-
     render() {
         const searchedItems = Object.entries(this.props.items.items).filter(item => item[1].name.toLowerCase().indexOf(
             this.state.search.toLowerCase()) !== -1)
