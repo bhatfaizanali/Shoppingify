@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/core";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import { removeItem as remove } from "../actions";
 
@@ -35,41 +35,41 @@ class ItemDescription extends Component {
                 <Text mt='30px' fontSize='13px' color='grey'>note</Text>
                 <Text mt='17px'>{this.item.note}</Text>
 
-                <Button
-                    border="none"
-                    bg="transparent"
-                    position="absolute"
-                    rounded="8px"
-                    bottom="30px"
-                    left="25%"
-                    size='sm'
-                    onClick={() => this.props.remove(this.item.id)}
-                >
-                    delete
-                </Button>
-                <Button
-                    bg="#f9a109"
-                    color="white"
-                    border="none"
-                    rounded="8px"
-                    position="absolute"
-                    bottom="30px"
-                    right="25%"
-                    size='sm'
-                >
-                    Add to list
-                </Button>
-            </Box>
-        )
-    }
+        <Button
+          border="none"
+          bg="transparent"
+          position="absolute"
+          rounded="8px"
+          bottom="30px"
+          left="25%"
+          size="sm"
+          onClick={() => this.props.remove(this.item.id)}
+        >
+          delete
+        </Button>
+        <Button
+          bg="#f9a109"
+          color="white"
+          border="none"
+          rounded="8px"
+          position="absolute"
+          bottom="30px"
+          right="25%"
+          size="sm"
+        >
+          Add to list
+        </Button>
+      </Box>
+    );
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        remove: id => {
-            dispatch(remove(id));
-        }
-    };
-}
+  return {
+    remove: (id) => {
+      dispatch(remove(id));
+    },
+  };
+};
 
 export default connect(null, mapDispatchToProps)(ItemDescription);
