@@ -7,6 +7,7 @@ export default function categoriesReducer(state = categories, action) {
       return state;
     case actions.DELETE_ITEM_FROM_CATEGORIES: {
       console.log(action.payload.name, "  ", action.payload.id);
+      break;
     }
     default:
       return state;
