@@ -16,14 +16,13 @@ export const fetchItems = () => {
 export const removeItem = (id) => {
   return {
     type: actions.REMOVE_ITEM,
-    payload: id
-
+    payload: id,
   };
 };
 
 export const addItemToCurrentList = (id) => {
   return {
     type: actions.ADD_ITEM_TO_CURRENT_LIST,
-    payload: id
+    payload: id,
   };
 };
