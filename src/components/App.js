@@ -7,21 +7,17 @@ import List from "./List.js";
 import AddItem from "./AddItem.js";
 import ItemDescription from "./ItemDescription.js";
 
-
-
 class App extends Component {
-  state = {
-    rightComponent: 'list'
-  };
+  state = {};
   render() {
     return (
       <Router>
         <div style={{ display: "flex" }} className="App">
           <Nav />
           <Items />
-          <Route path='/' exact component={List} />
-          <Route path='/itemDescription/:id' component={ItemDescription} />
-          <Route path='/addItem' component={AddItem} />
+          <Route path="/" exact component={List} />
+          <Route path="/itemDescription/:id" component={ItemDescription} />
+          <Route path="/addItem" component={AddItem} />
         </div>
       </Router>
     );

@@ -12,7 +12,7 @@ class Category extends Component {
     render() {
         const category = Object.entries(categories).map(category => {
             const items = category[1].map(id => {
-                return <Item name={this.props.items.items[id].name} />
+                return <Item key={id} id={id} name={this.props.items.items[id].name} />
             })
             return (
                 <div style={{ paddingTop: "3rem" }}>

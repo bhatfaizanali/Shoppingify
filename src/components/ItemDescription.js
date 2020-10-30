@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/core";
+<<<<<<< HEAD
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+=======
+import { connect } from "react-redux";
+>>>>>>> 83ef4272b02fc089ea51579a936cefd04a3f4333
 
 import { removeItem as remove } from "../actions";
 
@@ -36,6 +40,7 @@ class ItemDescription extends Component {
                 <Text mt='30px' fontSize='13px' color='grey'>note</Text>
                 <Text mt='17px'>{this.state.item.note}</Text>
 
+<<<<<<< HEAD
                 <Link to='/'>
                     <Button
                         border="none"
@@ -66,6 +71,35 @@ class ItemDescription extends Component {
             </Box>
         )
     }
+=======
+        <Button
+          border="none"
+          bg="transparent"
+          position="absolute"
+          rounded="8px"
+          bottom="30px"
+          left="25%"
+          size="sm"
+          onClick={() => this.props.remove(this.item.id)}
+        >
+          delete
+        </Button>
+        <Button
+          bg="#f9a109"
+          color="white"
+          border="none"
+          rounded="8px"
+          position="absolute"
+          bottom="30px"
+          right="25%"
+          size="sm"
+        >
+          Add to list
+        </Button>
+      </Box>
+    );
+  }
+>>>>>>> 83ef4272b02fc089ea51579a936cefd04a3f4333
 }
 
 const mapStateToProps = (state) => {
@@ -75,11 +109,15 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        remove: id => {
-            dispatch(remove(id));
-        }
-    };
-}
+  return {
+    remove: (id) => {
+      dispatch(remove(id));
+    },
+  };
+};
 
+<<<<<<< HEAD
 export default connect(mapStateToProps, mapDispatchToProps)(ItemDescription);
+=======
+export default connect(null, mapDispatchToProps)(ItemDescription);
+>>>>>>> 83ef4272b02fc089ea51579a936cefd04a3f4333
