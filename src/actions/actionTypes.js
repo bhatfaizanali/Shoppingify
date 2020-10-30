@@ -1,3 +1,6 @@
 export const FETCH_ITEMS = "FETCH ITEMS";
 export const ADD_ITEM = "ADD ITEM";
 export const REMOVE_ITEM = "REMOVE ITEM";
+
+export const ADD_ITEM_TO_CURRENT_LIST = "ADD ITEM TO CURRENT LIST";
+export const CLEAR_CURRENT_LIST = "CLEAR CURRENT LIST";

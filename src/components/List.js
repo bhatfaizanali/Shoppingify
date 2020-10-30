@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { MdModeEdit } from 'react-icons/md';
 
 class List extends Component {
+
     render() {
         return (
-            <Box bg='#FFF0DE' w='25vw' h='100vh' p='30px' position='relative' display={this.props.isOpen ? 'block' : 'none'}>
+            <Box bg='#FFF0DE' w='25vw' h='100vh' p='30px' position='relative'>
                 <Flex p='15px' bg='#80485b' rounded='8px'>
                     <Box flex='0.4'>
 
