@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Box, Button, Flex, Image, Text } from "@chakra-ui/core";
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { removeItem as remove } from "../actions";
+import { removeItem as remove, removeItemFromCategories } from "../actions";
 
 class ItemDescription extends Component {
+
     constructor() {
         super();
         this.state = {
@@ -48,35 +49,38 @@ class ItemDescription extends Component {
                 </Button>
                 </Link>
 
-                <Button
-                    bg="#f9a109"
-                    color="white"
-                    border="none"
-                    rounded="8px"
-                    position="absolute"
-                    bottom="30px"
-                    right="25%"
-                    size='sm'
-                >
-                    Add to list
-                </Button>
-            </Box>
-        )
-    }
+        <Button
+          bg="#f9a109"
+          color="white"
+          border="none"
+          rounded="8px"
+          position="absolute"
+          bottom="30px"
+          right="25%"
+          size="sm"
+        >
+          Add to list
+        </Button>
+      </Box>
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        items: state.items
-    }
-}
+  return {
+    items: state.items,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        remove: (id) => {
-            dispatch(remove(id));
-        },
-    };
+  return {
+    remove: (id) => {
+      dispatch(remove(id));
+    },
+    removeItemFromCategories: (id, name) => {
+      dispatch(removeItemFromCategories(id, name));
+    },
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemDescription);

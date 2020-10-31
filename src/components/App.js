@@ -19,7 +19,6 @@ class App extends Component {
             <Route path="/itemDescription/:id" component={ItemDescription} />
             <Route path="/addItem" component={AddItem} />
           </Switch>
-
         </div>
       </Router>
     );
