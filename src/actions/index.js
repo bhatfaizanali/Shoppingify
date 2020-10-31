@@ -21,7 +21,6 @@ export const removeItem = (id) => {
 };
 
 export const addItemToCurrentList = (id) => {
-  console.log('add finc called')
   return {
     type: actions.ADD_ITEM_TO_CURRENT_LIST,
     payload: id,
