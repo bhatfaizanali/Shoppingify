@@ -14,7 +14,10 @@ class Item extends Component {
             <Link style={{ textDecoration: "none" }} to={`/itemDescription/${this.props.id}`}>
                 <span style={{ color: "black", cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontStyle: "normal", fontSize: "16px" }}> {this.props.name}</span>
             </Link>
-            <span onClick={() => this.props.addItemToCurrentList(this.props.id)}><BiPlus style={{ cursor: "pointer" }} color="#C1C1C4" /></span>
+            <Link to='/'>
+                <span onClick={() => this.props.addItemToCurrentList(this.props.id)}><BiPlus style={{ cursor: "pointer" }} color="#C1C1C4" /></span>
+            </Link>
+
         </Box>);
     }
 }
