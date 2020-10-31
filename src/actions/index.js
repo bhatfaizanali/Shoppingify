@@ -32,3 +32,9 @@ export const removeItemFromCategories = (id, name) => {
     payload: { id, name },
   };
 };
+
+export const fetchLists = () => {
+  return {
+    type: actions.FETCH_LISTS,
+  };
+};

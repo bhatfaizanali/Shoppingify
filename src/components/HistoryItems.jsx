@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Box } from "@chakra-ui/core";
-import { BiCalendar, BiRightArrow, BiRightArrowAlt } from 'react-icons/bi';
+import { BiCalendar, BiRightArrowAlt } from 'react-icons/bi';
 
 class HistoryItems extends Component {
     state = {}
@@ -17,5 +17,6 @@ class HistoryItems extends Component {
         );
     }
 }
+
 
 export default HistoryItems;
