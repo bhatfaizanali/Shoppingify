@@ -6,6 +6,7 @@ import {
   InputGroup,
   InputRightElement,
   Text,
+  Textarea,
 } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
@@ -62,7 +63,7 @@ class AddItem extends Component {
         <Text fontSize="md" mb="7px">
           Note (optional)
         </Text>
-        <Input
+        <Textarea
           placeholder="Enter a note"
           mb="30px"
           focusBorderColor="#f9a109"
