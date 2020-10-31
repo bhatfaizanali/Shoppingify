@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Input, InputGroup, Icon, InputLeftElement, Popover, PopoverBody, PopoverTrigger, PopoverContent, ListItem, List } from "@chakra-ui/core";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class Search extends Component {
     state = {
@@ -18,7 +19,9 @@ class Search extends Component {
             this.state.search.toLowerCase()) !== -1)
         const items = searchedItems.map(item => {
             return (
-                <ListItem style={{ color: "black", cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontStyle: "normal", fontSize: "16px" }} key={item[1].id}>{item[1].name}</ListItem>
+                <Link key={item[0]} style={{ textDecoration: "none" }} to={`/itemDescription/${item[0]}`}>
+                    <ListItem style={{ color: "black", cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontStyle: "normal", fontSize: "16px" }} key={item[1].id}>{item[1].name}</ListItem>
+                </Link>
             )
         })
         return (
