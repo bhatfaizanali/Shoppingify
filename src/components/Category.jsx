@@ -8,10 +8,9 @@ import Item from "./Item"
 class Category extends Component {
     state = {}
     render() {
-        const categories = this.props.items.categories
-        const category = Object.entries(categories).map(category => {
+        const category = Object.entries(this.props.categories).map(category => {
             const items = category[1].map(id => {
-                return <Item key={id} id={id} name={this.props.items.items[id].name} />
+                return <Item key={id} id={id} name={this.props.items[id].name} category={category[0]} />
             })
             return (
                 <div style={{ paddingTop: "3rem" }} key={category[0]}>
@@ -23,14 +22,17 @@ class Category extends Component {
             )
         })
         return (
-
-            <> {category}</>
-
+            <>
+                {category}
+            </>
         );
     }
 }
 const mapStateToProps = (state) => {
-    return { items: state };
+    return {
+        categories: state.categories,
+        items: state.items
+    };
 };
 export default connect(mapStateToProps)(Category);
 
