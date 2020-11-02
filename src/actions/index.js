@@ -13,10 +13,10 @@ export const fetchItems = () => {
   };
 };
 
-export const removeItem = (id) => {
+export const removeItem = (item) => {
   return {
     type: actions.REMOVE_ITEM,
-    payload: id,
+    payload: item,
   };
 };
 
@@ -26,9 +26,44 @@ export const addItemToCurrentList = (id) => {
     payload: id,
   };
 };
+
+export const removeItemFromCurrentList = (id) => {
+  return {
+    type: actions.REMOVE_ITEM_FROM_CURRENT_LIST,
+    payload: id,
+  };
+};
+
 export const removeItemFromCategories = (id, name) => {
   return {
     type: actions.DELETE_ITEM_FROM_CATEGORIES,
     payload: { id, name },
+  };
+};
+
+export const decreaseQuantity = (id) => {
+  return {
+    type: actions.DECREASE_QUANTITY,
+    payload: id,
+  };
+};
+
+export const increaseQuantity = (id) => {
+  return {
+    type: actions.INCREASE_QUANTITY,
+    payload: id,
+  };
+};
+
+export const addNameSave = (name) => {
+  return {
+    type: actions.ADD_NAME_SAVE,
+    payload: name,
+  };
+};
+
+export const fetchLists = () => {
+  return {
+    type: actions.FETCH_LISTS,
   };
 };
