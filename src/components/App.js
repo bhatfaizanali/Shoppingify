@@ -6,6 +6,7 @@ import Nav from "./Nav";
 import List from "./List.js";
 import AddItem from "./AddItem.js";
 import ItemDescription from "./ItemDescription.js";
+import History from "./History";
 
 class App extends Component {
   render() {
@@ -13,7 +14,9 @@ class App extends Component {
       <Router>
         <div style={{ display: "flex" }} className="App">
           <Nav />
-          <Items />
+          {/* <Items /> */}
+          <History />
+          {/* <Route path="/histroy" component={History} /> */}
           <Switch>
             <Route path="/" exact component={List} />
             <Route path="/itemDescription/:id" component={ItemDescription} />

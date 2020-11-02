@@ -41,6 +41,7 @@ export const removeItemFromCategories = (id, name) => {
   };
 };
 
+
 export const decreaseQuantity = (id) => {
   return {
     type: actions.DECREASE_QUANTITY,
@@ -54,3 +55,9 @@ export const increaseQuantity = (id) => {
     payload: id
   }
 }
+
+export const fetchLists = () => {
+  return {
+    type: actions.FETCH_LISTS,
+  };
+};s

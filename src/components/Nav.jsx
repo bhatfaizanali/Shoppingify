@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { FiMenu, GoGraph, VscHistory, BiCart } from "react-icons/all";
+import { FiMenu, GoGraph, BsArrowCounterclockwise, BiCart } from "react-icons/all";
+import { Link } from "react-router-dom"
 
 
 class Nav extends Component {
@@ -13,8 +14,12 @@ class Nav extends Component {
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", height: "30%", marginTop: "auto" }}>
-                    <div style={{ borderLeft: "0.1rem solid #F9A109" }}><FiMenu size="2rem" /></div>
-                    <div><VscHistory size="2rem" /></div>
+                    <Link style={{ color: "black" }} to="/">
+                        <div style={{ borderLeft: "0.1rem solid #F9A109" }}><FiMenu size="2rem" /></div>
+                    </Link>
+                    <Link style={{ color: "black" }} to="/history">
+                        <div><BsArrowCounterclockwise size="2rem" /></div>
+                    </Link>
                     <div><GoGraph size="2rem" /></div>
                 </div>
                 <div style={{ marginTop: "auto" }}>
