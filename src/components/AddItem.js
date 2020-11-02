@@ -17,7 +17,7 @@ import { connect } from "react-redux";
 import { v4 as uuid } from "uuid";
 import { Link } from "react-router-dom";
 
-import { addItem as add } from "../actions";
+import { addItem as add, addItemToCategories } from "../actions";
 
 class AddItem extends Component {
   constructor() {
@@ -31,6 +31,7 @@ class AddItem extends Component {
   }
   clearInputs = () => {
     this.setState({
+      id: "",
       name: "",
       note: "",
       imageUrl: "",
@@ -48,6 +49,7 @@ class AddItem extends Component {
     };
     this.clearInputs();
     this.props.add(item);
+    this.props.addItemToCategories(item.id, item.category);
   };
   render() {
     const categories = Object.entries(this.props.categories).map((category) => {
@@ -164,6 +166,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     add: (item) => {
       dispatch(add(item));
+    },
+    addItemToCategories: (id, category) => {
+      dispatch(addItemToCategories(id, category));
     },
   };
 };

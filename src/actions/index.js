@@ -41,6 +41,13 @@ export const removeItemFromCategories = (id, name) => {
   };
 };
 
+export const addItemToCategories = (id, category) => {
+  return {
+    type: actions.ADD_ITEM_TO_CATEGORIES,
+    payload: { id, category },
+  };
+};
+
 export const decreaseQuantity = (id) => {
   return {
     type: actions.DECREASE_QUANTITY,
@@ -65,5 +72,30 @@ export const addNameSave = (name) => {
 export const fetchLists = () => {
   return {
     type: actions.FETCH_LISTS,
+  };
+};
+
+export const cancelCurrentList = (id) => {
+  return {
+    type: actions.CANCEL_CURRENT_LIST,
+  };
+};
+
+export const completeCurrentList = (id) => {
+  return {
+    type: actions.COMPLETE_CURRENT_LIST,
+  };
+};
+
+export const clearCurrentList = () => {
+  return {
+    type: actions.CLEAR_CURRENT_LIST,
+  };
+};
+
+export const addList = (list) => {
+  return {
+    type: actions.ADD_LIST,
+    payload: list,
   };
 };

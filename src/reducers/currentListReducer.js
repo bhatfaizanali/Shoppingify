@@ -1,3 +1,5 @@
+import { v4 as uuid } from "uuid";
+
 import * as actions from "../actions/actionTypes";
 const currentList = {
   id: "",
@@ -36,11 +38,29 @@ export default function currentListReducer(state = currentList, action) {
       return { ...state };
     }
     case actions.ADD_NAME_SAVE: {
+      state.id = uuid();
       state.name = action.payload;
+      state.date = Date();
+      state.status = "active";
+      return { ...state };
+    }
+    case actions.CANCEL_CURRENT_LIST: {
+      state.status = "cancelled";
+      return { ...state };
+    }
+    case actions.COMPLETE_CURRENT_LIST: {
+      state.status = "completed";
       return { ...state };
     }
     case actions.CLEAR_CURRENT_LIST:
-      return currentList;
+      state = {
+        id: "",
+        name: "",
+        status: "",
+        date: "",
+        items: {},
+      };
+      return state;
     default:
       return state;
   }

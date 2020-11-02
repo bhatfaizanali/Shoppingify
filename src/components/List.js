@@ -1,5 +1,17 @@
 import React, { Component } from "react";
-import { Box, Button, Flex, Input, Text } from "@chakra-ui/core";
+import {
+  Box,
+  Button,
+  Flex,
+  Input,
+  Text,
+  Modal,
+  ModalOverlay,
+  ModalCloseButton,
+  ModalContent,
+  ModalBody,
+  ModalFooter,
+} from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { MdModeEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -10,9 +22,23 @@ import {
   increaseQuantity,
   removeItemFromCurrentList,
   addNameSave,
+  cancelCurrentList,
+  completeCurrentList,
+  addList,
+  clearCurrentList,
 } from "../actions";
 
 class List extends Component {
+  state = {
+    listName: "",
+    saved: false,
+    openModal: false,
+  };
+
+  save = () => {
+    this.props.addNameSave(this.state.listName);
+    this.setState({ saved: true, listName: "" });
+  };
   displayItems = () => {
     const categories = {};
     Object.entries(this.props.currentList.items).forEach((item) => {
@@ -97,71 +123,164 @@ class List extends Component {
 
   render() {
     return (
-      <Box
-        bg="#FFF0DE"
-        w="25vw"
-        h="100vh"
-        p="30px"
-        position="relative"
-        boxSizing="border-box"
-      >
-        <Flex p="15px" bg="#80485b" rounded="8px">
-          <Box flex="0.4"></Box>
-          <Box color="white" flex="0.6" fontSize="14px">
-            Didn't find what you need?<br></br>
-            <Link to="/addItem">
-              <Button
-                border="none"
-                bg="white"
-                size="sm"
-                rounded="8px"
-                fontSize="11px"
-                mt="10px"
-              >
-                Add item
-              </Button>
-            </Link>
-          </Box>
-        </Flex>
-        <Flex mt="40px" fontWeight="bold" alignItems="center">
-          <Text flex="1">Shopping list</Text>
-          <Button border="none" bg="transparent">
-            <MdModeEdit />
-          </Button>
-        </Flex>
-
-        {this.displayItems()}
-
-        <Flex
-          bg="white"
-          position="absolute"
-          bottom="0"
-          left="0"
+      <>
+        <Box
+          bg="#FFF0DE"
+          w="25vw"
+          h="100vh"
           p="30px"
-          width="100%"
+          position="relative"
           boxSizing="border-box"
         >
-          <Input
-            placeholder="Enter a name"
-            border="2px solid"
-            color="#f9a109"
-            rounded="8px"
-            focusBorderColor="#f9a109"
-          />
-          <Button
-            bg="#f9a109"
-            color="white"
-            border="none"
-            rounded="8px"
-            fontSize="12px"
-            ml="-12px"
-            zIndex="1"
-            size="auto"
+          <Flex p="15px" bg="#80485b" rounded="8px">
+            <Box flex="0.4"></Box>
+            <Box color="white" flex="0.6" fontSize="14px">
+              Didn't find what you need?<br></br>
+              <Link to="/addItem">
+                <Button
+                  border="none"
+                  bg="white"
+                  size="sm"
+                  rounded="8px"
+                  fontSize="11px"
+                  mt="10px"
+                >
+                  Add item
+                </Button>
+              </Link>
+            </Box>
+          </Flex>
+          <Flex mt="40px" fontWeight="bold" alignItems="center">
+            <Text flex="1">Shopping list</Text>
+            <Button border="none" bg="transparent">
+              <MdModeEdit />
+            </Button>
+          </Flex>
+
+          {this.displayItems()}
+
+          <Flex
+            bg="white"
+            position="absolute"
+            bottom="0"
+            left="0"
+            p="30px"
+            width="100%"
+            boxSizing="border-box"
+            display={this.state.saved ? "none" : "flex"}
           >
-            Save
-          </Button>
-        </Flex>
-      </Box>
+            <Input
+              value={this.state.listName}
+              placeholder="Enter a name"
+              border="2px solid"
+              color="#f9a109"
+              rounded="8px"
+              focusBorderColor="#f9a109"
+              onChange={(e) => this.setState({ listName: e.target.value })}
+            />
+            <Button
+              bg="#f9a109"
+              color="white"
+              border="none"
+              rounded="8px"
+              fontSize="12px"
+              ml="-12px"
+              zIndex="1"
+              size="auto"
+              onClick={this.save}
+            >
+              Save
+            </Button>
+          </Flex>
+
+          <Flex
+            bg="white"
+            position="absolute"
+            bottom="0"
+            left="0"
+            p="30px"
+            width="100%"
+            boxSizing="border-box"
+            display={this.state.saved ? "flex" : "none"}
+          >
+            <Button
+              cursor="pointer"
+              margin="2px"
+              fontFamily="Quicksand"
+              border="none"
+              bg="white"
+              onClick={() => this.setState({ openModal: true })}
+            >
+              Cancel
+            </Button>
+            <Button
+              cursor="pointer"
+              margin="2px"
+              border="none"
+              rounded="8px"
+              color="white"
+              fontFamily="Quicksand"
+              bg="#56CCF2"
+              onClick={() => {
+                this.props.completeCurrentList();
+                this.props.addList(this.props.currentList);
+                this.props.clearCurrentList();
+                this.setState({ saved: false });
+              }}
+            >
+              Complete
+            </Button>
+          </Flex>
+        </Box>
+
+        <Modal isOpen={this.state.openModal}>
+          <ModalOverlay />
+          <ModalContent rounded="1rem">
+            <ModalCloseButton
+              color="lightgrey"
+              background="white"
+              border="none"
+              cursor="pointer"
+              onClick={() => this.setState({ openModal: false })}
+            />
+            <ModalBody fontFamily="Quicksand" padding="1rem">
+              Are you sure that you want to cancel this list?
+            </ModalBody>
+
+            <ModalFooter>
+              <Button
+                cursor="pointer"
+                margin="2px"
+                fontFamily="Quicksand"
+                border="none"
+                bg="white"
+                variant="ghost"
+                onClick={() => this.setState({ openModal: false })}
+              >
+                Close
+              </Button>
+              <Button
+                cursor="pointer"
+                margin="2px"
+                border="none"
+                rounded="8px"
+                color="white"
+                fontFamily="Quicksand"
+                onClick={() => {
+                  this.props.cancelCurrentList();
+                  this.props.addList(this.props.currentList);
+                  this.props.clearCurrentList();
+                  this.setState({ saved: false, openModal: false });
+                }}
+                variantColor="red"
+                mr={3}
+              >
+                Yes
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </>
     );
   }
 }
@@ -186,6 +305,18 @@ const mapDispatchToProps = (dispatch) => {
     },
     addNameSave: (name) => {
       dispatch(addNameSave(name));
+    },
+    cancelCurrentList: () => {
+      dispatch(cancelCurrentList());
+    },
+    completeCurrentList: () => {
+      dispatch(completeCurrentList());
+    },
+    addList: (list) => {
+      dispatch(addList(list));
+    },
+    clearCurrentList: () => {
+      dispatch(clearCurrentList());
     },
   };
 };
