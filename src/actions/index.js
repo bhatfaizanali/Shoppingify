@@ -41,6 +41,13 @@ export const removeItemFromCategories = (id, name) => {
   };
 };
 
+export const addItemToCategories = (id, category) => {
+  return {
+    type: actions.ADD_ITEM_TO_CATEGORIES,
+    payload: { id, category },
+  };
+};
+
 export const decreaseQuantity = (id) => {
   return {
     type: actions.DECREASE_QUANTITY,
