@@ -31,7 +31,11 @@ class List extends Component {
           </Text>
           {category[1].map((item) => {
             return (
-              <Flex alignItems="center" key={item}>
+              <Flex
+                style={{ marginTop: "1rem" }}
+                alignItems="center"
+                key={item}
+              >
                 <Text flex="1" my="0.5em">
                   {this.props.items[item].name}
                 </Text>

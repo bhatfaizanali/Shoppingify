@@ -17,9 +17,9 @@ class Nav extends Component {
                     <Link style={{ color: "black" }} to="/">
                         <div style={{ borderLeft: "0.1rem solid #F9A109" }}><FiMenu size="2rem" /></div>
                     </Link>
-                    <Link style={{ color: "black" }} to="/history">
-                        <div><BsArrowCounterclockwise size="2rem" /></div>
-                    </Link>
+                    {/* <Link style={{ color: "black" }} to="/history">
+                    </Link> */}
+                    <div><BsArrowCounterclockwise size="2rem" /></div>
                     <div><GoGraph size="2rem" /></div>
                 </div>
                 <div style={{ marginTop: "auto" }}>

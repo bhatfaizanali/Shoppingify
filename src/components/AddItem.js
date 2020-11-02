@@ -14,8 +14,8 @@ import {
   ListItem,
 } from "@chakra-ui/core";
 import { connect } from "react-redux";
-import { AiOutlineClose } from "react-icons/ai";
 import { v4 as uuid } from "uuid";
+import { Link } from "react-router-dom";
 
 import { addItem as add } from "../actions";
 
@@ -126,18 +126,19 @@ class AddItem extends Component {
             </PopoverContent>
           </Popover>
         </InputGroup>
-
-        <Button
-          border="none"
-          bg="transparent"
-          position="absolute"
-          rounded="8px"
-          bottom="30px"
-          left="25%"
-          onClick={this.clearInputs}
-        >
-          cancel
-        </Button>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <Button
+            border="none"
+            bg="transparent"
+            position="absolute"
+            rounded="8px"
+            bottom="30px"
+            left="25%"
+            onClick={this.clearInputs}
+          >
+            cancel
+          </Button>
+        </Link>
         <Button
           bg="#f9a109"
           color="white"
