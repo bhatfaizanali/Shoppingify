@@ -10,9 +10,22 @@ import {
   increaseQuantity,
   removeItemFromCurrentList,
   addNameSave,
+  cancelCurrentList,
+  completeCurrentList,
+  addList,
+  clearCurrentList,
 } from "../actions";
 
 class List extends Component {
+  state = {
+    listName: "",
+    saved: false,
+  };
+
+  save = () => {
+    this.props.addNameSave(this.state.listName);
+    this.setState({ saved: true, listName: "" });
+  };
   displayItems = () => {
     const categories = {};
     Object.entries(this.props.currentList.items).forEach((item) => {
@@ -140,13 +153,16 @@ class List extends Component {
           p="30px"
           width="100%"
           boxSizing="border-box"
+          display={this.state.saved ? "none" : "flex"}
         >
           <Input
+            value={this.state.listName}
             placeholder="Enter a name"
             border="2px solid"
             color="#f9a109"
             rounded="8px"
             focusBorderColor="#f9a109"
+            onChange={(e) => this.setState({ listName: e.target.value })}
           />
           <Button
             bg="#f9a109"
@@ -157,8 +173,53 @@ class List extends Component {
             ml="-12px"
             zIndex="1"
             size="auto"
+            onClick={this.save}
           >
             Save
+          </Button>
+        </Flex>
+
+        <Flex
+          bg="white"
+          position="absolute"
+          bottom="0"
+          left="0"
+          p="30px"
+          width="100%"
+          boxSizing="border-box"
+          display={this.state.saved ? "flex" : "none"}
+        >
+          <Button
+            cursor="pointer"
+            margin="2px"
+            fontFamily="Quicksand"
+            border="none"
+            bg="white"
+            onClick={() => {
+              this.props.cancelCurrentList();
+              this.props.addList(this.props.currentList);
+              this.props.clearCurrentList();
+              this.setState({ saved: false });
+            }}
+          >
+            Cancel
+          </Button>
+          <Button
+            cursor="pointer"
+            margin="2px"
+            border="none"
+            rounded="8px"
+            color="white"
+            fontFamily="Quicksand"
+            bg="#56CCF2"
+            onClick={() => {
+              this.props.completeCurrentList();
+              this.props.addList(this.props.currentList);
+              this.props.clearCurrentList();
+              this.setState({ saved: false });
+            }}
+          >
+            Complete
           </Button>
         </Flex>
       </Box>
@@ -186,6 +247,18 @@ const mapDispatchToProps = (dispatch) => {
     },
     addNameSave: (name) => {
       dispatch(addNameSave(name));
+    },
+    cancelCurrentList: () => {
+      dispatch(cancelCurrentList());
+    },
+    completeCurrentList: () => {
+      dispatch(completeCurrentList());
+    },
+    addList: (list) => {
+      dispatch(addList(list));
+    },
+    clearCurrentList: () => {
+      dispatch(clearCurrentList());
     },
   };
 };

@@ -74,3 +74,28 @@ export const fetchLists = () => {
     type: actions.FETCH_LISTS,
   };
 };
+
+export const cancelCurrentList = (id) => {
+  return {
+    type: actions.CANCEL_CURRENT_LIST,
+  };
+};
+
+export const completeCurrentList = (id) => {
+  return {
+    type: actions.COMPLETE_CURRENT_LIST,
+  };
+};
+
+export const clearCurrentList = () => {
+  return {
+    type: actions.CLEAR_CURRENT_LIST,
+  };
+};
+
+export const addList = (list) => {
+  return {
+    type: actions.ADD_LIST,
+    payload: list,
+  };
+};
