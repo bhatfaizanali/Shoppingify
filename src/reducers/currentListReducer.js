@@ -35,6 +35,10 @@ export default function currentListReducer(state = currentList, action) {
       state.items[action.payload].quantity++;
       return { ...state };
     }
+    case actions.ADD_NAME_SAVE: {
+      state.name = action.payload;
+      return { ...state };
+    }
     case actions.CLEAR_CURRENT_LIST:
       return currentList;
     default:

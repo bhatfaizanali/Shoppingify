@@ -4,9 +4,14 @@ import {
   Button,
   Input,
   InputGroup,
-  InputRightElement,
   Text,
   Textarea,
+  Popover,
+  PopoverBody,
+  List,
+  PopoverContent,
+  PopoverTrigger,
+  ListItem,
 } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
@@ -18,22 +23,21 @@ class AddItem extends Component {
   constructor() {
     super();
     this.state = {
-      name: '',
-      note: '',
-      imageUrl: '',
-      category: '',
-      showCategories: false
-    }
+      name: "",
+      note: "",
+      imageUrl: "",
+      category: "",
+    };
   }
   clearInputs = () => {
     this.setState({
-      name: '',
-      note: '',
-      imageUrl: '',
-      category: '',
-      showCategories: false
-    })
-  }
+      name: "",
+      note: "",
+      imageUrl: "",
+      category: "",
+      showCategories: false,
+    });
+  };
   createItem = () => {
     const item = {
       id: uuid(),
@@ -41,14 +45,32 @@ class AddItem extends Component {
       note: this.state.note,
       imageUrl: this.state.imageUrl,
       category: this.state.category,
-    }
+    };
     this.clearInputs();
-    this.props.add(item)
-  }
+    this.props.add(item);
+  };
   render() {
+    const categories = Object.entries(this.props.categories).map((category) => {
+      return (
+        <ListItem
+          onClick={() => this.setState({ category: category[0] })}
+          style={{
+            cursor: "pointer",
+            fontFamily: "'Quicksand', sans-serif",
+            fontStyle: "normal",
+            fontSize: "18px",
+          }}
+          key={category[0]}
+        >
+          {category[0]}
+        </ListItem>
+      );
+    });
     return (
-      <Box bg='#fafafe' w='25vw' h='100vh' p='30px' position='relative'>
-        <Text fontSize='xl' mb='40px'>Add a new item</Text>
+      <Box bg="#fafafe" w="25vw" h="100vh" p="30px" position="relative">
+        <Text fontSize="xl" mb="40px">
+          Add a new item
+        </Text>
         <Text fontSize="md" mb="7px">
           Name
         </Text>
@@ -87,25 +109,22 @@ class AddItem extends Component {
           Category
         </Text>
         <InputGroup>
-          <Input
-            placeholder="Enter a category"
-            mb="30px"
-            focusBorderColor="#f9a109"
-            value={this.state.category}
-            onChange={(e) => this.setState({ category: e.target.value })}
-            onClick={() => this.setState({ showCategories: true })}
-          />
-          <InputRightElement>
-            <Button
-              bg="transparent"
-              border="none"
-              size="sm"
-              display={this.state.showCategories ? "block" : "none"}
-              onClick={() => 2}
-            >
-              <AiOutlineClose color="#929292" />
-            </Button>
-          </InputRightElement>
+          <Popover>
+            <PopoverTrigger>
+              <Input
+                placeholder="Enter a category"
+                mb="30px"
+                focusBorderColor="#f9a109"
+                value={this.state.category}
+                onChange={(e) => this.setState({ category: e.target.value })}
+              />
+            </PopoverTrigger>
+            <PopoverContent zIndex={4}>
+              <PopoverBody>
+                <List spacing={3}>{categories}</List>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
         </InputGroup>
 
         <Button
@@ -135,7 +154,11 @@ class AddItem extends Component {
     );
   }
 }
-
+const mapStateToProps = (state) => {
+  return {
+    categories: state.categories,
+  };
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     add: (item) => {
@@ -143,4 +166,4 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-export default connect(null, mapDispatchToProps)(AddItem);
+export default connect(mapStateToProps, mapDispatchToProps)(AddItem);

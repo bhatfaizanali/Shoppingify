@@ -9,6 +9,7 @@ import {
   decreaseQuantity,
   increaseQuantity,
   removeItemFromCurrentList,
+  addNameSave,
 } from "../actions";
 
 class List extends Component {
@@ -178,6 +179,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     removeItemFromCurrentList: (id) => {
       dispatch(removeItemFromCurrentList(id));
+    },
+    addNameSave: (name) => {
+      dispatch(addNameSave(name));
     },
   };
 };

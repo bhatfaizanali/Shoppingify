@@ -55,6 +55,13 @@ export const increaseQuantity = (id) => {
   };
 };
 
+export const addNameSave = (name) => {
+  return {
+    type: actions.ADD_NAME_SAVE,
+    payload: name,
+  };
+};
+
 export const fetchLists = () => {
   return {
     type: actions.FETCH_LISTS,
