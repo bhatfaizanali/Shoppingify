@@ -4,20 +4,39 @@ import { connect } from 'react-redux';
 import { MdModeEdit } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
+import { decreaseQuantity, increaseQuantity } from '../actions'
+
 class List extends Component {
-
-
     displayItems = () => {
-        return Object.entries(this.props.currentList.items).map(item => {
+        const categories = {};
+        Object.entries(this.props.currentList.items).forEach(item => {
+            if (categories.hasOwnProperty(this.props.items[item[0]].category)) {
+                categories[this.props.items[item[0]].category].push(item[0])
+            } else {
+                categories[this.props.items[item[0]].category] = [item[0]]
+            }
+
+        })
+
+        return Object.entries(categories).map(category => {
             return (
-                <Flex alignItems='center' key={item[0]}>
-                    <Text flex='1'>{this.props.items[item[0]].name}</Text>
-                    <Flex border='2px solid #f9a109' color='#f9a109' rounded='15px' alignItems='center'>
-                        <Box color='#f9a109' ml='0.4em' cursor='pointer'>-</Box>
-                        <Text fontSize='0.8em' my='3px' mx='1em'>{item[1].quantity} pcs</Text>
-                        <Box color='#f9a109' mr='0.4em' cursor='pointer'>+</Box>
-                    </Flex>
-                </Flex>
+                <Box key={category[0]}>
+                    <Text fontSize='0.7em' color='grey'>{category[0]}</Text>
+                    {
+                        category[1].map(item => {
+                            return (
+                                <Flex alignItems='center' key={item}>
+                                    <Text flex='1' my='0.5em'>{this.props.items[item].name}</Text>
+                                    <Flex border='2px solid #f9a109' color='#f9a109' rounded='15px' alignItems='center'>
+                                        <Box color='#f9a109' ml='0.4em' cursor='pointer' onClick={() => this.props.decreaseQuantity(item)}>-</Box>
+                                        <Text fontSize='0.8em' my='3px' mx='1em' >{this.props.currentList.items[item].quantity} pcs</Text>
+                                        <Box color='#f9a109' mr='0.4em' cursor='pointer' onClick={() => this.props.increaseQuantity(item)}>+</Box>
+                                    </Flex>
+                                </Flex>
+                            )
+                        })
+                    }
+                </Box>
             )
         })
     }
@@ -61,17 +80,15 @@ const mapStateToProps = state => {
     }
 }
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         add: board => {
-//             dispatch(add(board))
-//         },
-//         remove: id => {
-//             dispatch(remove(id))
-//         },
-//         get: () => {
-//             dispatch(get())
-//         }
-//     }
-// }
-export default connect(mapStateToProps)(List);
+const mapDispatchToProps = dispatch => {
+    return {
+        decreaseQuantity: (id) => {
+            dispatch(decreaseQuantity(id))
+        },
+        increaseQuantity: (id) => {
+            dispatch(increaseQuantity(id))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);
