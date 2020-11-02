@@ -3,8 +3,13 @@ import { Box, Button, Flex, Input, Text } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { MdModeEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { FiTrash } from "react-icons/fi";
 
-import { decreaseQuantity, increaseQuantity } from "../actions";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeItemFromCurrentList,
+} from "../actions";
 
 class List extends Component {
   displayItems = () => {
@@ -29,31 +34,53 @@ class List extends Component {
                 <Text flex="1" my="0.5em">
                   {this.props.items[item].name}
                 </Text>
-                <Flex
-                  border="2px solid #f9a109"
-                  color="#f9a109"
-                  rounded="15px"
-                  alignItems="center"
-                >
-                  <Box
-                    color="#f9a109"
-                    ml="0.4em"
-                    cursor="pointer"
-                    onClick={() => this.props.decreaseQuantity(item)}
+                <Flex background=" white" justifyContent="space-evenly">
+                  <div
+                    onClick={() => this.props.removeItemFromCurrentList(item)}
+                    style={{
+                      padding: "0.7rem",
+                      background: "#F9A109",
+                      borderRadius: "0.7rem",
+                      cursor: "pointer",
+                    }}
                   >
-                    -
-                  </Box>
-                  <Text fontSize="0.8em" my="3px" mx="1em">
-                    {this.props.currentList.items[item].quantity} pcs
-                  </Text>
-                  <Box
-                    color="#f9a109"
-                    mr="0.4em"
-                    cursor="pointer"
-                    onClick={() => this.props.increaseQuantity(item)}
-                  >
-                    +
-                  </Box>
+                    <FiTrash size="1.3rem" color="white" />
+                  </div>
+                  <div style={{ padding: "0.5rem" }}>
+                    <Box
+                      color="#f9a109"
+                      ml="0.4em"
+                      cursor="pointer"
+                      fontSize="1.5rem"
+                      onClick={() => this.props.decreaseQuantity(item)}
+                    >
+                      -
+                    </Box>
+                  </div>
+                  <div style={{ padding: "0.5rem" }}>
+                    <Box
+                      border="3px solid #f9a109"
+                      color="#f9a109"
+                      rounded="15px"
+                      alignItems="center"
+                      padding="0.2rem"
+                    >
+                      <Text fontSize="0.8em" my="3px" mx="1em">
+                        {this.props.currentList.items[item].quantity} pcs
+                      </Text>
+                    </Box>
+                  </div>
+                  <div style={{ padding: "0.5rem" }}>
+                    <Box
+                      color="#f9a109"
+                      mr="0.4em"
+                      cursor="pointer"
+                      fontSize="1.5rem"
+                      onClick={() => this.props.increaseQuantity(item)}
+                    >
+                      +
+                    </Box>
+                  </div>
                 </Flex>
               </Flex>
             );
@@ -148,6 +175,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     increaseQuantity: (id) => {
       dispatch(increaseQuantity(id));
+    },
+    removeItemFromCurrentList: (id) => {
+      dispatch(removeItemFromCurrentList(id));
     },
   };
 };
