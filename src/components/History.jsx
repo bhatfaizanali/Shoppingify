@@ -16,4 +16,4 @@ class History extends Component {
     }
 }
 
-export default History; <>I am History</>
+export default History;
