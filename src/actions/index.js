@@ -32,7 +32,7 @@ export const removeItemFromCurrentList = (id) => {
     type: actions.REMOVE_ITEM_FROM_CURRENT_LIST,
     payload: id,
   };
-}
+};
 
 export const removeItemFromCategories = (id, name) => {
   return {
@@ -41,23 +41,22 @@ export const removeItemFromCategories = (id, name) => {
   };
 };
 
-
 export const decreaseQuantity = (id) => {
   return {
     type: actions.DECREASE_QUANTITY,
-    payload: id
-  }
-}
+    payload: id,
+  };
+};
 
 export const increaseQuantity = (id) => {
   return {
     type: actions.INCREASE_QUANTITY,
-    payload: id
-  }
-}
+    payload: id,
+  };
+};
 
 export const fetchLists = () => {
   return {
     type: actions.FETCH_LISTS,
   };
-};s
+};

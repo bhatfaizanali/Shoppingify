@@ -12,10 +12,15 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div style={{ display: "flex" }} className="App">
+        <div
+          style={{
+            display: "flex",
+          }}
+          className="App"
+        >
           <Nav />
-          {/* <Items /> */}
-          <History />
+          <Items />
+          {/* <History /> */}
           {/* <Route path="/histroy" component={History} /> */}
           <Switch>
             <Route path="/" exact component={List} />
