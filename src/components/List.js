@@ -11,6 +11,9 @@ import {
   ModalContent,
   ModalBody,
   ModalFooter,
+  ControlBox,
+  Icon,
+  VisuallyHidden,
 } from "@chakra-ui/core";
 import { connect } from "react-redux";
 import { MdModeEdit } from "react-icons/md";
@@ -26,6 +29,7 @@ import {
   completeCurrentList,
   addList,
   clearCurrentList,
+  completeItemInCurrentList,
 } from "../actions";
 
 class List extends Component {
@@ -62,10 +66,85 @@ class List extends Component {
                 alignItems="center"
                 key={item}
               >
-                <Text flex="1" my="0.5em">
+                <div style={{ display: this.state.saved ? "block" : "none" }}>
+                  <label>
+                    <div
+                      style={{
+                        display: this.state.saved ? "flex" : "none",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <VisuallyHidden as="input" type="checkbox" />
+                        <ControlBox
+                          cursor="pointer"
+                          border="1rem solid #F9A109"
+                          borderWidth="1px"
+                          size="24px"
+                          rounded="sm"
+                          _checked={{
+                            bg: "#F9A109",
+                            color: "white",
+                            borderColor: "#F9A109",
+                          }}
+                          _focus={{
+                            borderColor: "#F9A109",
+                            boxShadow: "outline",
+                          }}
+                        >
+                          <Icon
+                            onClick={() => {
+                              this.props.completeItemInCurrentList(item);
+                            }}
+                            name="check"
+                            size="16px"
+                          />
+                        </ControlBox>
+                      </div>
+                      <div
+                        style={{
+                          textDecoration: this.props.currentList.items[item]
+                            .bought
+                            ? "line-through"
+                            : "none",
+                          padding: " 0 1.5rem 0 0.5rem",
+                          fontFamily: "Quicksand",
+                        }}
+                      >
+                        <Box as="span" verticalAlign="top" ml={3}>
+                          {this.props.items[item].name}
+                        </Box>
+                      </div>
+                      <div>
+                        <Box
+                          border="3px solid #f9a109"
+                          color="#f9a109"
+                          rounded="15px"
+                          alignItems="center"
+                          padding="0.2rem"
+                        >
+                          <Text fontSize="0.8em" my="3px" mx="1em">
+                            {this.props.currentList.items[item].quantity} pcs
+                          </Text>
+                        </Box>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+
+                <Text
+                  display={this.state.saved ? "none" : "flex"}
+                  flex="1"
+                  my="0.5em"
+                >
                   {this.props.items[item].name}
                 </Text>
-                <Flex background=" white" justifyContent="space-evenly">
+                <Flex
+                  rounded="1rem"
+                  background=" white"
+                  justifyContent="space-evenly"
+                  display={this.state.saved ? "none" : "flex"}
+                >
                   <div
                     onClick={() => this.props.removeItemFromCurrentList(item)}
                     style={{
@@ -152,16 +231,20 @@ class List extends Component {
           </Flex>
           <Flex mt="40px" fontWeight="bold" alignItems="center">
             <Text flex="1">Shopping list</Text>
-            <Button border="none" bg="transparent">
+            <Button
+              onClick={() => this.setState({ saved: !this.state.saved })}
+              cursor="pointer"
+              border="none"
+              bg="transparent"
+            >
               <MdModeEdit />
             </Button>
           </Flex>
-
           {this.displayItems()}
 
           <Flex
-            bg="white"
             position="absolute"
+            bg="white"
             bottom="0"
             left="0"
             p="30px"
@@ -317,6 +400,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     clearCurrentList: () => {
       dispatch(clearCurrentList());
+    },
+    completeItemInCurrentList: (id) => {
+      dispatch(completeItemInCurrentList(id));
     },
   };
 };

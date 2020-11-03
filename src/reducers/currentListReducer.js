@@ -52,6 +52,13 @@ export default function currentListReducer(state = currentList, action) {
       state.status = "completed";
       return { ...state };
     }
+    case actions.COMPLETE_ITEM_IN_CURRENT_LIST: {
+      state.items[action.payload].bought = state.items[action.payload].bought
+        ? false
+        : true;
+      return { ...state };
+    }
+
     case actions.CLEAR_CURRENT_LIST:
       state = {
         id: "",

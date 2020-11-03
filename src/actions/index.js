@@ -99,3 +99,10 @@ export const addList = (list) => {
     payload: list,
   };
 };
+
+export const completeItemInCurrentList = (id) => {
+  return {
+    type: actions.COMPLETE_ITEM_IN_CURRENT_LIST,
+    payload: id,
+  };
+};

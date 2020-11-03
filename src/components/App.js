@@ -21,8 +21,8 @@ class App extends Component {
         >
           <Nav />
           {/* <HistoryItemDetails /> */}
-          <History />
-          {/* <Items /> */}
+          {/* <History /> */}
+          <Items />
           {/* <Switch>
             <Route path="/" exact component={Items} />
             <Route path="/histroy" component={History} />
