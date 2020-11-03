@@ -7,6 +7,7 @@ import List from "./List.js";
 import AddItem from "./AddItem.js";
 import ItemDescription from "./ItemDescription.js";
 import History from "./History";
+import HistoryItemDetails from "./HistoryItemDetails";
 
 class App extends Component {
   render() {
@@ -19,10 +20,13 @@ class App extends Component {
           className="App"
         >
           <Nav />
-          <Switch>
-            <Route path="/" component={Items} />
+          {/* <HistoryItemDetails /> */}
+          {/* <History /> */}
+          <Items />
+          {/* <Switch>
+            <Route path="/" exact component={Items} />
             <Route path="/histroy" component={History} />
-          </Switch>
+          </Switch> */}
           <Switch>
             <Route path="/" exact component={List} />
             <Route path="/itemDescription/:id" component={ItemDescription} />
