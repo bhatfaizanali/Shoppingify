@@ -9,7 +9,7 @@ class HistoryItems extends Component {
     render() {
         const lists = Object.entries(this.props.lists).map(list => {
             return (
-                <Box onClick={() => this.props.setComponent("historyItemDetail")} key={list[0]} style={{ cursor: "pointer", marginBottom: "1rem", background: "white", display: "flex", justifyContent: "space-between", padding: "1.5rem", boxShadow: "0px 2px 12px rgba(0, 0, 0, 0.05)", border: "0.1rem", borderRadius: "1rem" }}>
+                <Box onClick={() => this.props.setComponent("historyItemDetail", list)} key={list[0]} style={{ cursor: "pointer", marginBottom: "1rem", background: "white", display: "flex", justifyContent: "space-between", padding: "1.5rem", boxShadow: "0px 2px 12px rgba(0, 0, 0, 0.05)", border: "0.1rem", borderRadius: "1rem" }}>
                     <span style={{ color: "black", cursor: "pointer", fontFamily: "'Quicksand', sans-serif", fontStyle: "normal", fontSize: "16px" }}>{list[1].name}</span>
                     <div>
                         <span style={{ color: "#C1C1C4", padding: "1rem", fontFamily: "'Quicksand', sans-serif", fontStyle: "normal", fontSize: "16px" }}> <BiCalendar /> {list[1].date} </span>

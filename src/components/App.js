@@ -12,9 +12,13 @@ import HistoryItemDetails from "./HistoryItemDetails";
 class App extends Component {
   state = {
     renderComponent: "items",
+    props: null,
   };
-  setComponent = (name) => {
-    this.setState({ renderComponent: name });
+  setComponent = (name, props) => {
+    this.setState({
+      renderComponent: name,
+      props: props === undefined ? null : props,
+    });
   };
   render() {
     const component = () => {
@@ -23,7 +27,12 @@ class App extends Component {
       } else if (this.state.renderComponent === "history") {
         return <History setComponent={this.setComponent} />;
       } else {
-        return <HistoryItemDetails setComponent={this.setComponent} />;
+        return (
+          <HistoryItemDetails
+            setComponent={this.setComponent}
+            props={this.state.props}
+          />
+        );
       }
     };
     return (
