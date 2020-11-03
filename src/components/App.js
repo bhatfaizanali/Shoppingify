@@ -8,9 +8,25 @@ import AddItem from "./AddItem.js";
 import ItemDescription from "./ItemDescription.js";
 import History from "./History";
 import HistoryItemDetails from "./HistoryItemDetails";
+import { TiThSmallOutline } from "react-icons/ti";
 
 class App extends Component {
+  state = {
+    renderComponent: "items",
+  };
+  setComponent = (name) => {
+    this.setState({ renderComponent: name });
+  };
   render() {
+    const component = () => {
+      if (this.state.renderComponent === "items") {
+        return <Items />;
+      } else if (this.state.renderComponent === "history") {
+        return <History />;
+      } else {
+        return <HistoryItemDetails />;
+      }
+    };
     return (
       <Router>
         <div
@@ -19,14 +35,8 @@ class App extends Component {
           }}
           className="App"
         >
-          <Nav />
-          {/* <HistoryItemDetails /> */}
-          {/* <History /> */}
-          <Items />
-          {/* <Switch>
-            <Route path="/" exact component={Items} />
-            <Route path="/histroy" component={History} />
-          </Switch> */}
+          <Nav setComponent={this.setComponent} />
+          {component()}
           <Switch>
             <Route path="/" exact component={List} />
             <Route path="/itemDescription/:id" component={ItemDescription} />
