@@ -8,7 +8,7 @@ class Month extends Component {
             <>
                 <div
                     style={{ padding: "1rem", fontFamily: "'Quicksand', sans-serif", fontWeight: "600", fontSize: "14px", lineHeight: "32px" }}>
-                    August 2020
+                    {/* August 2020 */}
                 </div>
                 <div>
                     <HistoryItems />

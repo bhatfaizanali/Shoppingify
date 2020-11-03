@@ -15,12 +15,12 @@ class Nav extends Component {
 
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", height: "30%", marginTop: "auto" }}>
                     <Link style={{ color: "black" }} to="/">
-                        <div style={{ borderLeft: "0.1rem solid #F9A109" }}><FiMenu size="2rem" /></div>
+                        <div style={{ borderLeft: "0.4rem solid", borderLeftColor: " #F9A109", padding: "1rem", borderRadius: "0.3rem" }}><FiMenu size="2rem" /></div>
                     </Link>
                     <Link style={{ color: "black" }} to="/history">
-                        <div><BsArrowCounterclockwise size="2rem" /></div>
+                        <div style={{ borderLeft: "0.4rem solid", borderLeftColor: "white", padding: "1rem", borderRadius: "0.3rem" }}><BsArrowCounterclockwise size="2rem" /></div>
                     </Link>
-                    <div><GoGraph size="2rem" /></div>
+                    <div style={{ borderLeft: "0.4rem solid", borderLeftColor: "white", padding: "1rem", borderRadius: "0.3rem" }}><GoGraph size="2rem" /></div>
                 </div>
                 <div style={{ marginTop: "auto" }}>
                     <div style={{ background: "#F9A109", padding: "0.8rem", borderRadius: "90rem", }}>
