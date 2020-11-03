@@ -10,7 +10,7 @@ class History extends Component {
                 Shopping history
             </div>
             <div>
-                <Month />
+                <Month setComponent={this.props.setComponent} />
             </div>
         </div >);
     }

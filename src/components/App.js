@@ -10,7 +10,31 @@ import History from "./History";
 import HistoryItemDetails from "./HistoryItemDetails";
 
 class App extends Component {
+  state = {
+    renderComponent: "items",
+    props: null,
+  };
+  setComponent = (name, props) => {
+    this.setState({
+      renderComponent: name,
+      props: props === undefined ? null : props,
+    });
+  };
   render() {
+    const component = () => {
+      if (this.state.renderComponent === "items") {
+        return <Items />;
+      } else if (this.state.renderComponent === "history") {
+        return <History setComponent={this.setComponent} />;
+      } else {
+        return (
+          <HistoryItemDetails
+            setComponent={this.setComponent}
+            props={this.state.props}
+          />
+        );
+      }
+    };
     return (
       <Router>
         <div
@@ -19,14 +43,8 @@ class App extends Component {
           }}
           className="App"
         >
-          <Nav />
-          {/* <HistoryItemDetails /> */}
-          {/* <History /> */}
-          <Items />
-          {/* <Switch>
-            <Route path="/" exact component={Items} />
-            <Route path="/histroy" component={History} />
-          </Switch> */}
+          <Nav setComponent={this.setComponent} />
+          {component()}
           <Switch>
             <Route path="/" exact component={List} />
             <Route path="/itemDescription/:id" component={ItemDescription} />

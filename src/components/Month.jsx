@@ -11,7 +11,7 @@ class Month extends Component {
                     {/* August 2020 */}
                 </div>
                 <div>
-                    <HistoryItems />
+                    <HistoryItems setComponent={this.props.setComponent} />
                 </div>
             </>
         );
