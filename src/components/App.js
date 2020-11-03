@@ -8,7 +8,6 @@ import AddItem from "./AddItem.js";
 import ItemDescription from "./ItemDescription.js";
 import History from "./History";
 import HistoryItemDetails from "./HistoryItemDetails";
-import { TiThSmallOutline } from "react-icons/ti";
 
 class App extends Component {
   state = {
@@ -22,9 +21,9 @@ class App extends Component {
       if (this.state.renderComponent === "items") {
         return <Items />;
       } else if (this.state.renderComponent === "history") {
-        return <History />;
+        return <History setComponent={this.setComponent} />;
       } else {
-        return <HistoryItemDetails />;
+        return <HistoryItemDetails setComponent={this.setComponent} />;
       }
     };
     return (

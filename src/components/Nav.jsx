@@ -4,7 +4,7 @@ import { FiMenu, GoGraph, BsArrowCounterclockwise, BiCart } from "react-icons/al
 
 class Nav extends Component {
     state = {
-        items: true
+        active: "items"
     }
     render() {
         return (
@@ -15,8 +15,8 @@ class Nav extends Component {
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-around", height: "30%", marginTop: "auto" }}>
-                    <div onClick={() => { this.props.setComponent("items"); this.setState({ active: !this.state.active }) }} style={{ cursor: "pointer", borderLeft: "0.4rem solid", borderLeftColor: this.state.active ? " #F9A109" : "white", padding: "1rem", borderRadius: "0.3rem" }}><FiMenu size="2rem" /></div>
-                    <div onClick={() => { this.props.setComponent("history"); this.setState({ active: !this.state.active }) }} style={{ cursor: "pointer", borderLeft: "0.4rem solid", borderLeftColor: this.state.active ? "white" : "#F9A109", padding: "1rem", borderRadius: "0.3rem" }}><BsArrowCounterclockwise size="2rem" /></div>
+                    <div onClick={() => { this.props.setComponent("items"); this.setState({ active: "items" }) }} style={{ cursor: "pointer", borderLeft: "0.4rem solid", borderLeftColor: this.state.active === "items" ? " #F9A109" : "white", padding: "1rem", borderRadius: "0.3rem" }}><FiMenu size="2rem" /></div>
+                    <div onClick={() => { this.props.setComponent("history"); this.setState({ active: "history" }) }} style={{ cursor: "pointer", borderLeft: "0.4rem solid", borderLeftColor: this.state.active === "history" ? "#F9A109" : "white", padding: "1rem", borderRadius: "0.3rem" }}><BsArrowCounterclockwise size="2rem" /></div>
                     <div style={{ borderLeft: "0.4rem solid", borderLeftColor: "white", padding: "1rem", borderRadius: "0.3rem" }}><GoGraph size="2rem" /></div>
                 </div>
                 <div style={{ marginTop: "auto" }}>
