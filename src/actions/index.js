@@ -1,10 +1,53 @@
 import * as actions from "./actionTypes";
 import * as API from "../service";
 
-export const addItem = (item) => {
-  return {
-    type: actions.ADD_ITEM,
-    payload: item,
+// export const addItem = (item) => {
+//   return {
+//     type: actions.ADD_ITEM,
+//     payload: item,
+//   };
+// };
+
+// export const addItemToCategories = (id, category) => {
+//   return {
+//     type: actions.ADD_ITEM_TO_CATEGORIES,
+//     payload: { id, category },
+//   };
+// };
+export const addItem = (
+  item_name,
+  item_note = "",
+  imgURL = "",
+  category_id,
+  category_name = "",
+) => {
+  return function (dispatch) {
+    API.createItem(item_name, item_note, imgURL, category_id, category_name)
+      .then((response) => {
+        let category = {};
+        category["category_id"] = response.data.category_id;
+        category["category_name"] = response.data.category_name;
+        category["item_id"] = response.data.item_id;
+        let item = {};
+        item["item"] = {
+          id: response.data.item_id,
+          name: response.data.item_name,
+          note: response.data.item_note,
+          imgUrl: response.data.imgURL,
+          category_id: response.data.category_id,
+          category: response.data.category_name,
+        };
+        dispatch({
+          type: actions.CREATE_ITEM,
+          payload: { category, item },
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: error,
+          payload: error,
+        });
+      });
   };
 };
 
@@ -19,26 +62,29 @@ export const setCategoryItems = () => {
     API.getItems()
       .then((response) => {
         let categories = {};
-        response.data.forEach((category) => {
+        Object.entries(response.data).forEach((category) => {
           let temp = [];
-          category.Category.forEach((item) => {
+          category[1].Item.forEach((item) => {
             temp.push(item.item_id);
           });
-          categories[category.category_name] = temp;
+          categories[category[0]] = {
+            items: temp,
+            category_name: category[1].category_name,
+          };
         });
         let items = {};
-        response.data.forEach((category) => {
-          category.Category.forEach((item) => {
+        Object.entries(response.data).forEach((category) => {
+          category[1].Item.forEach((item) => {
             items[item.item_id] = {
               id: item.item_id,
               name: item.item_name,
               note: item.item_note,
-              imgUrl: item.imgUrl,
-              category: category.category_name,
+              imgUrl: item.imgURL,
+              category_id: item.category_id,
+              category: category[1].category_name,
             };
           });
         });
-
         dispatch({
           type: actions.SET_DATA,
           payload: { categories, items },
@@ -78,13 +124,6 @@ export const removeItemFromCategories = (id, name) => {
   return {
     type: actions.DELETE_ITEM_FROM_CATEGORIES,
     payload: { id, name },
-  };
-};
-
-export const addItemToCategories = (id, category) => {
-  return {
-    type: actions.ADD_ITEM_TO_CATEGORIES,
-    payload: { id, category },
   };
 };
 

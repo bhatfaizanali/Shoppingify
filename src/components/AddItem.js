@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import random from "random-int";
 import {
   Box,
   Button,
@@ -17,7 +18,7 @@ import { connect } from "react-redux";
 import { v4 as uuid } from "uuid";
 import { Link } from "react-router-dom";
 
-import { addItem as add, addItemToCategories } from "../actions";
+import { addItem as add, setCategoryItems } from "../actions";
 
 class AddItem extends Component {
   constructor() {
@@ -27,6 +28,8 @@ class AddItem extends Component {
       note: "",
       imageUrl: "",
       category: "",
+      category_id: "",
+      showCategories: false,
     };
   }
   clearInputs = () => {
@@ -36,6 +39,7 @@ class AddItem extends Component {
       note: "",
       imageUrl: "",
       category: "",
+      category_id: "",
       showCategories: false,
     });
   };
@@ -46,16 +50,39 @@ class AddItem extends Component {
       note: this.state.note,
       imageUrl: this.state.imageUrl,
       category: this.state.category,
+      category_id: this.state.category_id,
     };
     this.clearInputs();
-    this.props.add(item);
-    this.props.addItemToCategories(item.id, item.category);
+    if (this.state.category_id !== "") {
+      this.props.add(
+        item.name,
+        item.note,
+        item.imageUrl,
+        item.category_id,
+        item.category,
+      );
+    } else {
+      this.props.add(
+        item.name,
+        item.note,
+        item.imageUrl,
+        random(1000, 100000),
+        item.category,
+      );
+    }
+    this.props.setCategoryItems();
   };
   render() {
     const categories = Object.entries(this.props.categories).map((category) => {
       return (
         <ListItem
-          onClick={() => this.setState({ category: category[0] })}
+          onClick={() =>
+            this.setState({
+              category: category[1].category_name,
+              category_id: category[0],
+              showCategories: false,
+            })
+          }
           style={{
             cursor: "pointer",
             fontFamily: "'Quicksand', sans-serif",
@@ -64,7 +91,7 @@ class AddItem extends Component {
           }}
           key={category[0]}
         >
-          {category[0]}
+          {category[1].category_name}
         </ListItem>
       );
     });
@@ -110,17 +137,16 @@ class AddItem extends Component {
         <Text fontSize="md" mb="7px">
           Category
         </Text>
+        <Input
+          onClick={() => this.setState({ showCategories: true })}
+          placeholder="Enter a category"
+          mb="30px"
+          focusBorderColor="#f9a109"
+          value={this.state.category}
+          onChange={(e) => this.setState({ category: e.target.value })}
+        />
         <InputGroup>
-          <Popover>
-            <PopoverTrigger>
-              <Input
-                placeholder="Enter a category"
-                mb="30px"
-                focusBorderColor="#f9a109"
-                value={this.state.category}
-                onChange={(e) => this.setState({ category: e.target.value })}
-              />
-            </PopoverTrigger>
+          <Popover isOpen={this.state.showCategories}>
             <PopoverContent zIndex={4}>
               <PopoverBody>
                 <List spacing={3}>{categories}</List>
@@ -164,11 +190,11 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    add: (item) => {
-      dispatch(add(item));
+    add: (name, note, imageUrl, category_id, category) => {
+      add(name, note, imageUrl, category_id, category)(dispatch);
     },
-    addItemToCategories: (id, category) => {
-      dispatch(addItemToCategories(id, category));
+    setCategoryItems: () => {
+      dispatch(setCategoryItems());
     },
   };
 };

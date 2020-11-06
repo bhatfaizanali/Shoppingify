@@ -1,11 +1,17 @@
 import * as actions from "../actions/actionTypes";
-import items from "../components/dummyItems.js";
 
-export default function itemsReducer(state = items, action) {
+export default function itemsReducer(state = {}, action) {
   switch (action.type) {
     case actions.SET_DATA:
       state = action.payload.items;
       return state;
+    case actions.CREATE_ITEM:
+      let newItem = {};
+      newItem[action.payload.item.item.id] = action.payload.item.item;
+      return {
+        ...state,
+        ...newItem,
+      };
     case actions.ADD_ITEM: {
       let newItem = {};
       newItem[action.payload.id] = action.payload;

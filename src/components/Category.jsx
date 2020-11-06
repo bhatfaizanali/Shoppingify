@@ -12,12 +12,15 @@ class Category extends Component {
     }
     render() {
         const category = Object.entries(this.props.categories).map(category => {
-            const items = category[1].map(id => {
-                return <Item key={id} id={id} name={this.props.items[id].name} category={category[0]} />
-            })
+            let items = <></>
+            if (category[1].items !== undefined) {
+                items = category[1].items.map(id => {
+                    return <Item key={id} id={id} name={this.props.items[id].name} category={category[0]} />
+                })
+            }
             return (
                 <div style={{ paddingTop: "3rem" }} key={category[0]}>
-                    <Text fontFamily="'Quicksand', sans-serif" fontSize="18px" mb='20px'>{category[0]}</Text>
+                    <Text fontFamily="'Quicksand', sans-serif" fontSize="18px" mb='20px'>{category[1].category_name}</Text>
                     <Grid templateColumns="repeat(5, 1fr)" gap={5}>
                         {items}
                     </Grid>

@@ -1,4 +1,5 @@
 export const SET_DATA = "SET DATA";
+export const CREATE_ITEM = "CREATE ITEM";
 
 export const FETCH_ITEMS = "FETCH ITEMS";
 export const ADD_ITEM = "ADD ITEM";

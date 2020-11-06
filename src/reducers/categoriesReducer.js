@@ -1,11 +1,19 @@
 import * as actions from "../actions/actionTypes";
-import categories from "../components/dummyCategories.js";
 
-export default function categoriesReducer(state = categories, action) {
+export default function categoriesReducer(state = {}, action) {
   switch (action.type) {
     case actions.SET_DATA:
       state = action.payload.categories;
       return state;
+    case actions.CREATE_ITEM:
+      console.log(state);
+      state[action.payload.category.category_id] = state[
+        action.payload.category.category_id
+      ].items = [
+        ...state[action.payload.category.category_id].items,
+        action.payload.category.item_id,
+      ];
+      return { ...state };
     case actions.FETCH_CATEGORIES:
       return state;
     case actions.DELETE_ITEM_FROM_CATEGORIES: {
