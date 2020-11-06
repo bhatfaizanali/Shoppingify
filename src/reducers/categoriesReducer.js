@@ -3,6 +3,9 @@ import categories from "../components/dummyCategories.js";
 
 export default function categoriesReducer(state = categories, action) {
   switch (action.type) {
+    case actions.SET_DATA:
+      state = action.payload.categories;
+      return state;
     case actions.FETCH_CATEGORIES:
       return state;
     case actions.DELETE_ITEM_FROM_CATEGORIES: {

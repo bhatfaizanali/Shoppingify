@@ -3,10 +3,13 @@ import { Text, Grid } from "@chakra-ui/core";
 import { connect } from "react-redux";
 
 import Item from "./Item"
+import { setCategoryItems } from '../actions';
 
 
 class Category extends Component {
-    state = {}
+    componentDidMount() {
+        this.props.setCategoryItems()
+    }
     render() {
         const category = Object.entries(this.props.categories).map(category => {
             const items = category[1].map(id => {
@@ -34,6 +37,14 @@ const mapStateToProps = (state) => {
         items: state.items
     };
 };
-export default connect(mapStateToProps)(Category);
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCategoryItems: () => {
+            dispatch(setCategoryItems());
+        },
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Category);
 
 

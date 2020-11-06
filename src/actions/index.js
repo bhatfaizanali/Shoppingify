@@ -1,4 +1,5 @@
 import * as actions from "./actionTypes";
+import * as API from "../service";
 
 export const addItem = (item) => {
   return {
@@ -7,9 +8,48 @@ export const addItem = (item) => {
   };
 };
 
-export const fetchItems = () => {
-  return {
-    type: actions.FETCH_ITEMS,
+// export const fetchItems = () => {
+//   return {
+//     type: actions.FETCH_ITEMS,
+//   };
+// };
+
+export const setCategoryItems = () => {
+  return function (dispatch) {
+    API.getItems()
+      .then((response) => {
+        let categories = {};
+        response.data.forEach((category) => {
+          let temp = [];
+          category.Category.forEach((item) => {
+            temp.push(item.item_id);
+          });
+          categories[category.category_name] = temp;
+        });
+        let items = {};
+        response.data.forEach((category) => {
+          category.Category.forEach((item) => {
+            items[item.item_id] = {
+              id: item.item_id,
+              name: item.item_name,
+              note: item.item_note,
+              imgUrl: item.imgUrl,
+              category: category.category_name,
+            };
+          });
+        });
+
+        dispatch({
+          type: actions.SET_DATA,
+          payload: { categories, items },
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: error,
+          payload: error,
+        });
+      });
   };
 };
 
