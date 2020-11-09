@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import Month from "./Month"
+import Month from "./Month";
+import { connect } from "react-redux";
+
+
+import { fetchLists } from "../actions";
 
 class History extends Component {
-    state = {}
+    componentDidMount() {
+        this.props.fetchLists()
+    }
     render() {
         return (<div style={{ background: " #FAFAFE", padding: "2rem 3rem", flex: '1' }}>
             <div
@@ -15,5 +21,11 @@ class History extends Component {
         </div >);
     }
 }
-
-export default History;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchLists: () => {
+            dispatch(fetchLists());
+        },
+    };
+};
+export default connect(null, mapDispatchToProps)(History);

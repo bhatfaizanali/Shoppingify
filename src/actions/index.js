@@ -1,6 +1,40 @@
 import * as actions from "./actionTypes";
 import * as API from "../service";
 
+// export const fetchLists = () => {
+//   return {
+//     type: actions.FETCH_LISTS,
+//   };
+// };
+export const fetchLists = () => {
+  let lists = {};
+  let items = {};
+  return function (dispatch) {
+    API.getLists().then((response) => {
+      response.data.forEach((list) => {
+        list.ListItem.forEach((item) => {
+          items[item.item_id] = {
+            qty: item.qty,
+            bought: item.bought,
+          };
+        });
+        lists[list.list_id] = {
+          id: list.list_id,
+          name: list.list_name,
+          status: list.list_status,
+          date: list.list_date.slice(0, 10),
+          items,
+        };
+        items = {};
+      });
+
+      dispatch({
+        type: actions.FETCH_LISTS,
+        payload: { lists },
+      });
+    });
+  };
+};
 // export const addItem = (item) => {
 //   return {
 //     type: actions.ADD_ITEM,
@@ -14,6 +48,24 @@ import * as API from "../service";
 //     payload: { id, category },
 //   };
 // };
+
+// export const addList = (list) => {
+//   return {
+//     type: actions.ADD_LIST,
+//     payload: list,
+//   };
+// };
+
+export const addList = (list) => {
+  API.createList(list).then((response) => {
+    console.log(response);
+  });
+  return {
+    type: actions.ADD_LIST,
+    payload: list,
+  };
+};
+
 export const addItem = (
   item_name,
   item_note = "",
@@ -148,12 +200,6 @@ export const addNameSave = (name) => {
   };
 };
 
-export const fetchLists = () => {
-  return {
-    type: actions.FETCH_LISTS,
-  };
-};
-
 export const cancelCurrentList = (id) => {
   return {
     type: actions.CANCEL_CURRENT_LIST,
@@ -169,13 +215,6 @@ export const completeCurrentList = (id) => {
 export const clearCurrentList = () => {
   return {
     type: actions.CLEAR_CURRENT_LIST,
-  };
-};
-
-export const addList = (list) => {
-  return {
-    type: actions.ADD_LIST,
-    payload: list,
   };
 };
 

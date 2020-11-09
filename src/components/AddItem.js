@@ -32,6 +32,12 @@ class AddItem extends Component {
       showCategories: false,
     };
   }
+  componentWillUnmount() {
+    this.props.setCategoryItems();
+  }
+  componentDidUpdate() {
+    this.props.setCategoryItems();
+  }
   clearInputs = () => {
     this.setState({
       id: "",
@@ -70,7 +76,6 @@ class AddItem extends Component {
         item.category,
       );
     }
-    this.props.setCategoryItems();
   };
   render() {
     const categories = Object.entries(this.props.categories).map((category) => {

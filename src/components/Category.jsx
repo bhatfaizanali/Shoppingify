@@ -15,7 +15,8 @@ class Category extends Component {
             let items = <></>
             if (category[1].items !== undefined) {
                 items = category[1].items.map(id => {
-                    return <Item key={id} id={id} name={this.props.items[id].name} category={category[0]} />
+                    if (this.props.items[id] !== undefined)
+                        return <Item key={id} id={id} name={this.props.items[id].name} category={category[0]} />
                 })
             }
             return (

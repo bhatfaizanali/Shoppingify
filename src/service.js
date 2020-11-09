@@ -21,3 +21,16 @@ export function createItem(
     category_name,
   });
 }
+
+export function getLists() {
+  return axios.get("/lists");
+}
+
+export function createList(currentList) {
+  return axios.post("/lists", {
+    list_name: currentList.name,
+    list_status: currentList.status,
+    list_date: currentList.date,
+    list_items: currentList.items,
+  });
+}

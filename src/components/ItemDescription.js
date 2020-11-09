@@ -19,7 +19,9 @@ class ItemDescription extends Component {
   }
 
   render() {
-    const item = this.props.items[this.props.match.params.id];
+    const item = this.props.items[parseInt(this.props.match.params.id)];
+    console.log(item.name);
+
     return (
       <Box
         w="25vw"
@@ -76,7 +78,7 @@ class ItemDescription extends Component {
             onClick={() => {
               this.props.removeItemFromCurrentList(item.id);
               this.props.removeItem(item.id);
-              this.props.removeItemFromCategories(item.id, item.category);
+              this.props.removeItemFromCategories(item.id, item.name);
             }}
           >
             delete

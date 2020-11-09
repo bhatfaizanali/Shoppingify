@@ -8,6 +8,17 @@ const currentList = {
   date: "",
   items: {},
 };
+function formatDate(date) {
+  var d = new Date(date),
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return [year, month, day].join("-");
+}
 
 export default function currentListReducer(state = currentList, action) {
   switch (action.type) {
@@ -40,7 +51,7 @@ export default function currentListReducer(state = currentList, action) {
     case actions.ADD_NAME_SAVE: {
       state.id = uuid();
       state.name = action.payload;
-      state.date = Date();
+      state.date = formatDate(Date());
       state.status = "active";
       return { ...state };
     }

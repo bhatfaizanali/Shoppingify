@@ -5,13 +5,11 @@ import { BiCalendar } from 'react-icons/bi';
 import { Link } from "react-router-dom"
 
 class HistoryItemDetails extends Component {
-    state = {}
-    allEqual = arr => arr.every(v => v === arr[0])
     render() {
         const category = Object.entries(this.props.categories).map(category => {
-            const items = category[1].map(id => {
+            const items = category[1].items.map(id => {
                 const temp = Object.entries(this.props.props[1].items).map(item => {
-                    if (id === item[0]) {
+                    if (id == item[0]) {
                         return (
                             <Box key={id} style={{ background: "white", display: "flex", justifyContent: "space-between", padding: "1rem", boxShadow: "0px 2px 12px rgba(0, 0, 0, 0.05)", border: "0.1rem", borderRadius: "1rem" }}>
                                 <Link style={{ textDecoration: "none" }} to={`/itemDescription/${id}`}>
@@ -28,7 +26,7 @@ class HistoryItemDetails extends Component {
             })
             return (
                 <div style={{ paddingTop: "3rem" }} key={category[0]}>
-                    <Text fontFamily="'Quicksand', sans-serif" fontSize="18px" mb='20px'>{category[0]}</Text>
+                    <Text fontFamily="'Quicksand', sans-serif" fontSize="18px" mb='20px'>{category[1].category_name}</Text>
                     <Grid templateColumns="repeat(5, 1fr)" gap={5}>
                         {items}
                     </Grid>
@@ -38,7 +36,7 @@ class HistoryItemDetails extends Component {
         })
         const lists = Object.entries(this.props.lists).map(list => {
             if (list[0] === this.props.props[0]) {
-                return (<div style={{ background: " #FAFAFE", padding: "2rem 3rem", flex: '1' }}>
+                return (<div key={list[0]} style={{ background: " #FAFAFE", padding: "2rem 3rem", flex: '1' }}>
                     <span onClick={() => this.props.setComponent("history")} style={{ cursor: "pointer", color: "#F9A109", fontFamily: "'Quicksand', sans-serif", fontWeight: "600", fontSize: "14px", lineHeight: "32px" }}> &lt; back</span>
 
                     <div

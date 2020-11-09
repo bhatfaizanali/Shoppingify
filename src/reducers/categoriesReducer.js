@@ -6,7 +6,6 @@ export default function categoriesReducer(state = {}, action) {
       state = action.payload.categories;
       return state;
     case actions.CREATE_ITEM:
-      console.log(state);
       state[action.payload.category.category_id] = state[
         action.payload.category.category_id
       ].items = [
@@ -17,7 +16,7 @@ export default function categoriesReducer(state = {}, action) {
     case actions.FETCH_CATEGORIES:
       return state;
     case actions.DELETE_ITEM_FROM_CATEGORIES: {
-      const filteredItems = state[action.payload.name].filter(
+      const filteredItems = state[action.payload.id].items.filter(
         (id) => id !== action.payload.id,
       );
       if (filteredItems.length === 0) {

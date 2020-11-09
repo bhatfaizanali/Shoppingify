@@ -1,9 +1,9 @@
 import * as actions from "../actions/actionTypes";
-import lists from "../components/dummyLists.js";
 
-export default function listsReducer(state = lists, action) {
+export default function listsReducer(state = {}, action) {
   switch (action.type) {
     case actions.FETCH_LISTS:
+      state = action.payload.lists;
       return state;
     case actions.ADD_LIST:
       state[action.payload.id] = action.payload;
